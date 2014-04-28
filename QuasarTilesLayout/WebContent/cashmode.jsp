@@ -21,14 +21,14 @@
 		var x = document.getElementById("500");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (500 * diplay);
+		x.innerHTML = (500 * diplay);
 	}
 
 	function hundered(z) {
 		var x = document.getElementById("100");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (100 * diplay);
+		x.innerHTML = (100 * diplay);
 
 	}
 
@@ -38,42 +38,75 @@
 
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (50 * diplay);
+		x.innerHTML = (50 * diplay);
 	}
 
 	function counttwenty(z) {
 		var x = document.getElementById("20");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (20 * diplay);
+		x.innerHTML = (20 * diplay);
 	}
 
 	function countten(z) {
 		var x = document.getElementById("10");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (10 * diplay);
+		x.innerHTML = (10 * diplay);
 	}
 
 	function countfive(z) {
 		var x = document.getElementById("5");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (5 * diplay);
+		x.innerHTML = (5 * diplay);
 	}
 
 	function counttwo(z) {
 		var x = document.getElementById("2");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (2 * diplay);
+		x.innerHTML = (2 * diplay);
 	}
 
 	function countone(z) {
 		var x = document.getElementById("1");
 		var diplay = document.getElementById(z).value;
 		//alert(diplay);
-		x.innerHTML = "The Value  " + (1 * diplay);
+		x.innerHTML = (1 * diplay);
+	}
+
+	function countCourseFee() {
+
+		var x = document.getElementById("total");
+		//alert("come to courseFee section");
+		var thousand = document.getElementById("1000");
+		var thousandvalue = thousand.innerHTML;
+		var fivehundered = document.getElementById("500");
+		var fivehunderedvalue = fivehundered.innerHTML;
+		var hundered = document.getElementById("100");
+		var hunderedvalue = hundered.innerHTML;
+		var fifty = document.getElementById("50");
+		var fiftyvalue = fifty.innerHTML;
+		var twenty = document.getElementById("20");
+		var twentyvalue = twenty.innerHTML;
+		var ten = document.getElementById("10");
+		var tenvalue = ten.innerHTML;
+		var five = document.getElementById("5");
+		var fivevalue = five.innerHTML;
+		var two = document.getElementById("2");
+		var twovalue = two.innerHTML;
+		var one = document.getElementById("1");
+		var onevalue = one.innerHTML;
+		var sum = parseInt("1", 10);
+		sum = parseFloat(thousandvalue) + parseFloat(fivehunderedvalue)
+				+ parseFloat(hunderedvalue) + parseFloat(fiftyvalue)
+				+ parseFloat(twentyvalue) + parseFloat(tenvalue)
+				+ parseFloat(fivevalue) + parseFloat(twovalue)
+				+ parseFloat(onevalue);
+
+		x.innerHTML = sum * 1;
+		window.confirm(sum);
 	}
 </script>
 </head>
@@ -84,27 +117,49 @@
 		<jsp:forward page="registration.jsp" />
 	</s:if>
 	<s:else>
-		<s:div id="studentdetail">
-			<h2>Welcome</h2>
-			Name:- <s:property value="#session.shagird.name" />
-			<br />
-			Email:- <s:property value="#session.shagird.emailId" />
-			<br />
-			Contact:- <s:property value="#session.shagird.contactNumber" />
-			<br />
-			Payment Objects:- <s:property
-				value="#session.shagird.paymentsList.size" />
-			<br />
+		<table border="0" id="studentdetail">
+			<tr>
+				<td colspan="4"><h2>Installment Configuration For</h2></td>
+				<td width="130"></td>
+				<td width="110"></td>
+				<td colspan="3" width="40"><a href="cancelregistration"><img
+						src="images/cancel.png" alt="" /></a></td>
+			</tr>
+			<tr>
+				<td>Name:-</td>
+				<td><s:property value="#session.shagird.name" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:-</td>
+				<td><s:property value="#session.shagird.emailId" /></td>
+			</tr>
+
+			<tr>
+				<td>Contact:-</td>
+				<td><s:property value="#session.shagird.contactNumber" /></td>
+			</tr>
+
+			<tr>
+				<td>Payment Objects:-</td>
+				<td><s:property value="#session.shagird.paymentsList.size" /></td>
+			</tr>
 			<s:iterator var="p" value="#session.shagird.paymentsList">
-				<s:property value="#p.paymentDetails.proposedAmount" />  :  <s:property
-					value="#p.paymentDetails.proposedDate" />   :  <s:property
-					value="#p.paymentComment" />
-				<br />
+				<tr>
+					<td>Proposed Amount:-</td>
+					<td><s:property value="#p.paymentDetails.proposedAmount" /></td>
+				</tr>
+				<tr>
+					<td>Proposed Date:-</td>
+					<td><s:property value="#p.paymentDetails.proposedDate" /></td>
+				</tr>
+
+				<tr>
+					<td>Payment Comment:-</td>
+					<td><s:property value="#p.paymentComment" /></td>
+				</tr>
 			</s:iterator>
-		</s:div>
-		<h3>
-			<a href="cancelregistration">Cancel Registration</a>
-		</h3>
+		</table>
 
 		<hr />
 		<h1>Registration Object Details</h1>
@@ -122,7 +177,7 @@
 		<hr />
 		<h1>Cash Mode Details</h1>
 		<s:form name="regcash" action="cashmode" theme="simple">
-			<table border="1">
+			<table border="0">
 				<tr>
 					<td><s:label name="simple" value="Payment Mode for"
 							labelposition="left" labelSeparator=":" /></td>
@@ -141,25 +196,26 @@
 
 					<td><s:label name="cashAmount" label="Cash Amount"
 							labelSeparator="" labelposition="left" /></td>
+					<td><s:property value="#session.shagird.feeDetails.courseFees" /></td>
+
 				</tr>
-		
+
 				<tr>
 					<td><s:label value="Enter 1000 Notes" /></td>
 					<td><s:select id="thousandnotes" name="thousandnotes"
 							label="1000 x" labelSeparator="" labelposition="left"
-							onclick="thousand(this.id)"
+							onclick="thousand(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="1000"></div></td>
+					<td><div id="1000">0</div></td>
 				</tr>
-
 
 				<tr>
 					<td><s:label value="Enter 500 Notes" /></td>
 					<td><s:select id="fivehundred" name="fivehundred"
 							label="500 x" labelSeparator="" labelposition="left"
-							onclick="fivehundered(this.id)"
+							onclick="fivehundered(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="500"></div></td>
+					<td><div id="500">0</div></td>
 				</tr>
 
 
@@ -167,64 +223,70 @@
 					<td><s:label value="Enter 100 Notes" /></td>
 					<td><s:select id="hundred" name="hundred" label="100 x"
 							labelSeparator="" labelposition="left"
-							onclick="hundered(this.id)"
+							onclick="hundered(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="100"></div></td>
+					<td><div id="100">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 50 Notes" /></td>
 					<td><s:select id="fifty" name="fifty" label="50 x"
 							labelSeparator="" labelposition="left"
-							onclick="countfifty(this.id)"
+							onclick="countfifty(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="50"></div></td>
+					<td><div id="50">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 20 Notes" /></td>
 					<td><s:select id="twenty" name="twenty" label="20 x"
 							labelSeparator="" labelposition="left"
-							onclick="counttwenty(this.id)"
+							onclick="counttwenty(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="20"></div></td>
+					<td><div id="20">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 10 Notes" /></td>
 					<td><s:select id="ten" name="ten" label="10 x"
 							labelSeparator="" labelposition="left"
-							onclick="countten(this.id)"
+							onclick="countten(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="10"></div></td>
+					<td><div id="10">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 5 Notes" /></td>
 					<td><s:select id="five" name="five" label="5 x"
 							labelSeparator="" labelposition="left"
-							onclick="countfive(this.id)"
+							onclick="countfive(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="5"></div></td>
+					<td><div id="5">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 2 Notes" /></td>
 					<td><s:select id="two" name="two" label="2 x"
 							labelSeparator="" labelposition="left"
-							onclick="counttwo(this.id)"
+							onclick="counttwo(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" /></td>
-					<td><div id="2"></div></td>
+					<td><div id="2">0</div></td>
 				</tr>
 
 				<tr>
 					<td><s:label value="Enter 1 Notes" /></td>
 					<td><s:select id="one" name="one" label="1 x"
 							labelSeparator="" labelposition="left"
-							onclick="countone(this.id)"
+							onclick="countone(this.id)" onfocus="countCourseFee()"
 							list="{'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'}" />
 					</td>
-					<td><div id="1"></div></td>
+					<td><div id="1">0</div></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Total" /></td>
+					<td></td>
+					<td><div id="total"></div></td>
 				</tr>
 			</table>
 			<table border="0">
@@ -237,14 +299,11 @@
 
 						<td><s:submit type="image" value="Proceed"
 								src="images/forward.png" /></td>
-
 					</s:div>
 				</tr>
 			</table>
 		</s:form>
 	</s:else>
-
-
 
 </body>
 </html>

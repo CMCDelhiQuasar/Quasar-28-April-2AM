@@ -44,56 +44,77 @@
 		<jsp:forward page="registration.jsp" />
 	</s:if>
 	<s:else>
-		<s:div id="studentdetail">
-			<h2>Welcome</h2>
-			Name:- <s:property value="#session.shagird.name" />
-			<br />
-			Email:- <s:property value="#session.shagird.emailId" />
-			<br />
-			Contact:- <s:property value="#session.shagird.contactNumber" />
-			<br />
-			Payment Objects:- <s:property
-				value="#session.shagird.paymentsList.size" />
-			<br />
+		<table border="0" id="studentdetail">
+			<tr>
+				<td colspan="4"><h2>Installment Configuration For</h2></td>
+				<td width="130"></td>
+				<td width="110"></td>
+				<td colspan="3" width="40"><a href="cancelregistration"><img
+						src="images/cancel.png" alt="" /></a></td>
+			</tr>
+			<tr>
+				<td>Name:-</td>
+				<td><s:property value="#session.shagird.name" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:-</td>
+				<td><s:property value="#session.shagird.emailId" /></td>
+			</tr>
+
+			<tr>
+				<td>Contact:-</td>
+				<td><s:property value="#session.shagird.contactNumber" /></td>
+			</tr>
+
+			<tr>
+				<td>Payment Objects:-</td>
+				<td><s:property value="#session.shagird.paymentsList.size" /></td>
+			</tr>
 			<s:iterator var="p" value="#session.shagird.paymentsList">
-				<s:property value="#p.paymentDetails.proposedAmount" />  :  <s:property
-					value="#p.paymentDetails.proposedDate" />   :  <s:property
-					value="#p.paymentComment" />
-				<br/>
+				<tr>
+					<td>Proposed Amount:-</td>
+					<td><s:property value="#p.paymentDetails.proposedAmount" /></td>
+				</tr>
+				<tr>
+					<td>Proposed Date:-</td>
+					<td><s:property value="#p.paymentDetails.proposedDate" /></td>
+				</tr>
+
+				<tr>
+					<td>Payment Comment:-</td>
+					<td><s:property value="#p.paymentComment" /></td>
+				</tr>
 			</s:iterator>
-		</s:div>
-		<h3>
-			<a href="cancelregistration">Cancel Registration</a>
-		</h3>
+		</table>
 
-		<hr/>
-			<h1>Registration Object Details</h1>
+		<hr />
+		<h1>Registration Object Details</h1>
 			Registration Proposed Amount:- <s:property
-				value="#session.shagird.paymentsList.get(0).paymentDetails.proposedAmount" />
-			<br/>Registration Deposited Amount:- <s:property
-				value="#session.shagird.paymentsList.get(0).paymentDetails.depositedAmount" />
-			<br/> Registration Proposed Date : <s:property
-				value="#session.shagird.paymentsList.get(0).paymentDetails.proposedDate" />
-			<br/>Registration Payment Date:- <s:property
-				value="#session.shagird.paymentsList.get(0).paymentDetails.paymentDate" />
-			<br/>Registration Payment Comment:- <s:property
-				value="#session.shagird.paymentsList.get(0).paymentComment" />
-			<br/>
-			<hr/>
+			value="#session.shagird.paymentsList.get(0).paymentDetails.proposedAmount" />
+		<br />Registration Deposited Amount:- <s:property
+			value="#session.shagird.paymentsList.get(0).paymentDetails.depositedAmount" />
+		<br /> Registration Proposed Date : <s:property
+			value="#session.shagird.paymentsList.get(0).paymentDetails.proposedDate" />
+		<br />Registration Payment Date:- <s:property
+			value="#session.shagird.paymentsList.get(0).paymentDetails.paymentDate" />
+		<br />Registration Payment Comment:- <s:property
+			value="#session.shagird.paymentsList.get(0).paymentComment" />
+		<br />
+		<hr />
 
-				<h1>Demand Draft Details</h1>
-				<s:form name="draftdetails" action="ddmode" method="post"
-					onsubmit="return validatedraft()">
-					<s:textfield label="DD Number" labelSeparator=""
-						labelposition="left" name="DDNumber" />
-					<s:textfield label="Drawn on/Bank Name" labelSeparator=""
-						labelposition="left" name="bankName" />
-					<sj:datepicker name="issueDate" changeYear="true"
-						changeMonth="true" label="Issue Date" labelSeparator=""
-						labelposition="left" />
-					<s:submit type="image" value="Proceed" src="images/forward.png"
-						align="right" />
-				</s:form>
+		<h1>Demand Draft Details</h1>
+		<s:form name="draftdetails" action="ddmode" method="post"
+			onsubmit="return validatedraft()">
+			<s:textfield label="DD Number" labelSeparator="" labelposition="left"
+				name="DDNumber" />
+			<s:textfield label="Drawn on/Bank Name" labelSeparator=""
+				labelposition="left" name="bankName" />
+			<sj:datepicker name="issueDate" changeYear="true" changeMonth="true"
+				label="Issue Date" labelSeparator="" labelposition="left" />
+			<s:submit type="image" value="Proceed" src="images/forward.png"
+				align="right" />
+		</s:form>
 	</s:else>
 
 

@@ -39,27 +39,49 @@
 		<jsp:forward page="registration.jsp" />
 	</s:if>
 	<s:else>
-		<s:div id="studentdetail">
-			<h2>Welcome</h2>
-			Name:- <s:property value="#session.shagird.name" />
-			<br />
-			Email:- <s:property value="#session.shagird.emailId" />
-			<br />
-			Contact:- <s:property value="#session.shagird.contactNumber" />
-			<br />
-			Payment Objects:- <s:property
-				value="#session.shagird.paymentsList.size" />
-			<br />
+		<table border="0" id="studentdetail">
+			<tr>
+				<td colspan="4"><h2>Welcome</h2></td>
+				<td width="130"></td>
+				<td width="110"></td>
+				<td colspan="3" width="40"><a href="cancelregistration"><img
+						src="images/cancel.png" alt="" /></a></td>
+			</tr>
+			<tr>
+				<td>Name:-</td>
+				<td><s:property value="#session.shagird.name" /></td>
+			</tr>
+
+			<tr>
+				<td>Email:-</td>
+				<td><s:property value="#session.shagird.emailId" /></td>
+			</tr>
+
+			<tr>
+				<td>Contact:-</td>
+				<td><s:property value="#session.shagird.contactNumber" /></td>
+			</tr>
+
+			<tr>
+				<td>Payment Objects:-</td>
+				<td><s:property value="#session.shagird.paymentsList.size" /></td>
+			</tr>
 			<s:iterator var="p" value="#session.shagird.paymentsList">
-				<s:property value="#p.paymentDetails.proposedAmount" />  :  <s:property
-					value="#p.paymentDetails.proposedDate" />   :  <s:property
-					value="#p.paymentComment" />
-				<br />
+				<tr>
+					<td>Proposed Amount:-</td>
+					<td><s:property value="#p.paymentDetails.proposedAmount" /></td>
+				</tr>
+				<tr>
+					<td>Proposed Date:-</td>
+					<td><s:property value="#p.paymentDetails.proposedDate" /></td>
+				</tr>
+
+				<tr>
+					<td>Payment Comment:-</td>
+					<td><s:property value="#p.paymentComment" /></td>
+				</tr>
 			</s:iterator>
-		</s:div>
-		<h3>
-			<a href="cancelregistration">Cancel Registration</a>
-		</h3>
+		</table>
 
 		<hr />
 		<h1>Registration Object Details</h1>
