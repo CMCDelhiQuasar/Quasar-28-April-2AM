@@ -13,9 +13,9 @@
 		registration work</h1>
 
 	Hey
-	<br>
+	<br/>
 	<h1>
-		<a href="getPDF?emailid=<s:property value="email"/>"></>Print
+		<a href="getPDF?emailid=<s:property value="email"/>">Print
 			Reciept</a>
 	</h1>
 

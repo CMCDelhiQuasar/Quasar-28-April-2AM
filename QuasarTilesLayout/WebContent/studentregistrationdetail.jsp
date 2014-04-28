@@ -123,8 +123,11 @@
 							labelposition="left" name="total" disabled="true" value="0.0" /></td>
 				</tr>
 			</s:div>
-
-
+            </table> 
+               <hr />
+		<hr />
+            <h2>Payment Details</h2>  
+			<table>
 			<s:div id="radio">
 				<tr>
 					<td><s:label value="Payment Type" labelSeparator=""

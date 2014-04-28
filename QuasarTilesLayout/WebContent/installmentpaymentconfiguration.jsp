@@ -72,27 +72,29 @@
 	</s:if>
 	<s:else>
 
-		<s:div id="studentdetail">
-			<h2>Installment Configuration For</h2>
-			Name:- <s:property value="#session.shagird.name" />
-			<br />
-			Email:- <s:property value="#session.shagird.emailId" />
-			<br />
-			Contact:- <s:property value="#session.shagird.contactNumber" />
-			<br />
-		</s:div>
 
-		<table border="1" id="studentdetail">
+
+		<table border="0" id="studentdetail">
 			<tr>
 				<td colspan="4"><h2>Installment Configuration For</h2></td>
+				<td width="130"></td>
+				<td width="110"></td>
+				<td colspan="3" width="40"><a href="cancelregistration"><img
+						src="images/cancel.png" alt="" /></a></td>
 			</tr>
 			<tr>
 				<td>Name:-</td>
 				<td><s:property value="#session.shagird.name" /></td>
-				<td width="30" ></td>
-				<td width="10" ></td>
-				<td colspan="3" ><a href="cancel"><img src="images/cancel.png" alt="" /> </a></td>
-				<td width="10" ></td>
+			</tr>
+
+			<tr>
+				<td>Email:-</td>
+				<td><s:property value="#session.shagird.emailId" /></td>
+			</tr>
+
+			<tr>
+				<td>Contact:-</td>
+				<td><s:property value="#session.shagird.contactNumber" /></td>
 			</tr>
 
 		</table>

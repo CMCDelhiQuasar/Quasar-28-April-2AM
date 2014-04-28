@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="sj" uri="/struts-jquery-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,10 +19,10 @@ td {
 table {
 	border-collapse: collapse;
 }
-#name
-{
-font-size: large;
-font-style: oblique;
+
+#name {
+	font-size: large;
+	font-style: oblique;
 }
 </style>
 
@@ -30,23 +31,27 @@ font-style: oblique;
 	This is Registration Confirmation Page
 
 	<table>
-		<tr id="name" >
-		<td width="40px" ></td>
+		<tr id="name">
+			<td width="40px"></td>
 			<td><h2>
 					<s:property value="#session.shagird.name" />
 				</h2></td>
 			<td width="30px"></td>
-			<td><h4><s:property value="#session.shagird.contactNumber" /></h4></td>
+			<td><h4>
+					<s:property value="#session.shagird.contactNumber" />
+				</h4></td>
 
 		</tr>
 		<tr>
-		<td width="40px" ></td>
-		<td>
-		<h2><s:property value="#session.shagird.emailId" /></h2>
-		</td>
+			<td width="40px"></td>
+			<td>
+				<h2>
+					<s:property value="#session.shagird.emailId" />
+				</h2>
+			</td>
 		</tr>
 	</table>
-	<table border="1" width="">
+	<table border="0" width="">
 		<tr>
 			<td colspan="2">
 				<h2>Basic Details Of Student</h2>
@@ -143,9 +148,11 @@ font-style: oblique;
 
 	</table>
 
-	<s:form action="confirmregistration" method="post">
+	<s:form action="confirmregistration" theme="simple" method="post">
 		<s:label label="Press Submit to Confirm" />
-		<s:submit />
+		<sj:submit value="Submit" />
+		<s:submit value="Cancel" action="cancelregistration" />
+		<s:submit value="Back" />
 	</s:form>
 
 </body>
