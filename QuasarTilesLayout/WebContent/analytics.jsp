@@ -12,8 +12,56 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello
+	<h3>Number of Registration vs Date</h3>
+	<table border="0">
+		<s:form action="analysecourse" theme="simple">
+			<tr>
+				<td><s:label value="Start Date" /></td>
+				<td><sj:datepicker name="startdate" displayFormat="dd/mm/yy" /></td>
+				<td><s:label value="End Date" /></td>
+				<td><sj:datepicker name="enddate" displayFormat="dd/mm/yy" /></td>
+			</tr>
+			<tr>
+				<td><s:checkbox name="checkall" /></td>
+				<td>All</td>
+				<td><s:select name="allcourse" list="{'J2SE','J2EE','Andriod','.NET','PHP'}" /></td>
+			</tr>
+			<tr>
+				<td><s:checkbox name="checkj2se" /></td>
+				<td><s:label value="J2SE" /></td>
+				<td><s:select name="j2seduration" list="{'6 months','6 weeks'}" /></td>
+			</tr>
 
+			<tr>
+				<td><s:checkbox name="checkj2ee" /></td>
+				<td><s:label value="J2EE" /></td>
+				<td><s:select name="j2eeduration" list="{'6 months','6 weeks'}" /></td>
+			</tr>
+			<tr>
+				<td><s:checkbox name="checkandriod" /></td>
+				<td><s:label value="Anriod" /></td>
+				<td><s:select name="andriodduration"
+						list="{'6 months','6 weeks'}" /></td>
+			</tr>
+			<tr>
+				<td><s:checkbox name="checkdotnet" /></td>
+				<td><s:label value=">Net" /></td>
+				<td><s:select name="dotnetduration" list="{'6 months','6 weeks'}" /></td>
+			</tr>
+			<tr>
+				<td><s:checkbox name="checkphp" /></td>
+				<td><s:label value="PHP" /></td>
+				<td><s:select name="phpduration" list="{'6 months','6 weeks'}" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><s:submit value="Analyse" /></td>
+			</tr>
+
+		</s:form>
+	</table>
 	<h3>Chart with values from a List or a Map</h3>
 	<sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;"
 		xaxisLabel="Label-X" yaxisLabel="Label-Y" xaxisColor="#ff0000"
