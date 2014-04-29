@@ -50,40 +50,40 @@ public class MainClass {
 		// System.out.println(st.getStudentId() + "  " + st.getName());
 		// }
 
-		// Criteria c = s.createCriteria(Payment.class);
-		// try {
-		//
-		// Date minDate = new SimpleDateFormat("yyyy-MM-dd")
-		// .parse("2014-04-16");
-		//
-		// Date maxDate = new Date(minDate.getTime()
-		// + TimeUnit.DAYS.toMillis(1));
-		//
-		// System.out.println(minDate);
-		// System.out.println(maxDate);
-		//
-		// // System.out.println();
-		//
-		// Conjunction and = Restrictions.conjunction();
-		// and.add(Restrictions.ge("paymentDetails.proposedDate", minDate));
-		// and.add(Restrictions.lt("paymentDetails.proposedDate", maxDate));
-		//
-		// c.add(and);
-		//
-		// } catch (Exception e) {
-		// System.out.println("Exception " + e.getMessage());
-		// }
-		//
-		// List<Payment> paymentList = c.list();
-		//
-		// System.out.println("Payment List Size " + paymentList.size());
-		//
-		// for (Payment p : paymentList) {
-		// System.out.println(p.getPaymentID());
-		// }
-		//
-		// s.getTransaction().commit();
-		// s.close();
+		Criteria c = s.createCriteria(Payment.class);
+		try {
+
+			Date minDate = new SimpleDateFormat("yyyy-MM-dd")
+					.parse("2014-04-30");
+
+			Date maxDate = new Date(minDate.getTime()
+					+ TimeUnit.DAYS.toMillis(1));
+
+			System.out.println(minDate);
+			System.out.println(maxDate);
+
+			// System.out.println();
+
+			Conjunction and = Restrictions.conjunction();
+			and.add(Restrictions.ge("paymentDetails.proposedDate", minDate));
+			and.add(Restrictions.lt("paymentDetails.proposedDate", maxDate));
+
+			c.add(and);
+
+		} catch (Exception e) {
+			System.out.println("Exception " + e.getMessage());
+		}
+
+		List<Payment> paymentList = c.list();
+
+		System.out.println("Payment List Size " + paymentList.size());
+
+		for (Payment p : paymentList) {
+			System.out.println(p.getPaymentID());
+		}
+
+		s.getTransaction().commit();
+		s.close();
 
 		// StudentService ss = new StudentService();
 		//
@@ -98,11 +98,11 @@ public class MainClass {
 		// }
 		// }
 
-		PaymentService ps = new PaymentService();
-
-		for (Payment p : ps.getPayment(0, 0, null, 0, 0, null, null, 0, 0,
-				null, 0, 0, 99998L)) {
-			System.out.println("" + p.getPaymentID());
-		}
+//		PaymentService ps = new PaymentService();
+//
+//		for (Payment p : ps.getPayment(0, 0, null, 0, 0, "2014-04-25", null, 0, 0,
+//				null, 0, 0, 0L)) {
+//			System.out.println("" + p.getPaymentID());
+//		}
 	}
 }
