@@ -46,7 +46,7 @@ input[type=search]:focus {
 		<td align="left" valign="top">&nbsp;&nbsp; <a href=""><img
 				alt="" align="bottom" src="images/home.png" /></a>&nbsp;&nbsp;&nbsp; <a
 			href=""><img alt="" align="bottom" src="images/setting.png" /></a>&nbsp;&nbsp;&nbsp;<a
-			href="analytics"><img alt="" align="bottom"
+			href="analyticswrapper.jsp"><img alt="" align="bottom"
 				src="images/analytics.png" /></a>
 		</td>
 		<td align="center" valign="top">

@@ -106,16 +106,12 @@
 		</action>
 
 		<action name="analytics" class="com.cmcdelhi.quasar.action.GraphingAction">
-			<result name="success">/analytics.jsp</result>
+			<result name="success">/analyticswrapper.jsp</result>
 			<result name="failure">/failure.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
 
-		<action name="analysecourse" class="com.cmcdelhi.quasar.action.AnalyseCourseAction">
-			<result name="success">/analytics.jsp</result>
-			<result name="failure">/failure.jsp</result>
-			<result name="input">/index.jsp</result>
-		</action>
+		
 
 	</package>
 

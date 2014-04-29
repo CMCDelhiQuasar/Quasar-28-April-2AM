@@ -25,26 +25,20 @@ public class GraphingService {
 		return 0;
 	}
 
-	// date in yyyy-MM-dd format 2014-04-30
-	public int getTotalStudentNoOfStudentRegisteredOnADate(String specifiedate) {
+	public int getTotalStudentNoOfStudentRegisteredOnADate(Date specifiedate) {
 		Criteria c = quasarConnectionManager.getSession().createCriteria(
 				Payment.class);
+		c.add(Restrictions.eq("class", "RegistrationPayment"));
 		try {
 
-			Date minDate = new SimpleDateFormat("yyyy-MM-dd")
-					.parse(specifiedate);
+			Date minDate = specifiedate;
 
 			Date maxDate = new Date(minDate.getTime()
 					+ TimeUnit.DAYS.toMillis(1));
 
-			System.out.println(minDate);
-			System.out.println(maxDate);
-
-			// System.out.println();
-
 			Conjunction and = Restrictions.conjunction();
-			and.add(Restrictions.ge("paymentDetails.proposedDate", minDate));
-			and.add(Restrictions.lt("paymentDetails.proposedDate", maxDate));
+			and.add(Restrictions.ge("paymentDetails.paymentDate", minDate));
+			and.add(Restrictions.lt("paymentDetails.paymentDate", maxDate));
 
 			c.add(and);
 
@@ -57,10 +51,73 @@ public class GraphingService {
 
 	}
 
+	// // date in yyyy-MM-dd format 2014-04-30
+	// public int getTotalStudentNoOfStudentRegisteredOnADate(String
+	// specifiedate) {
+	// Criteria c = quasarConnectionManager.getSession().createCriteria(
+	// Payment.class);
+	// try {
+	//
+	// Date minDate = new SimpleDateFormat("yyyy-MM-dd")
+	// .parse(specifiedate);
+	//
+	// Date maxDate = new Date(minDate.getTime()
+	// + TimeUnit.DAYS.toMillis(1));
+	//
+	// System.out.println(minDate);
+	// System.out.println(maxDate);
+	//
+	// // System.out.println();
+	//
+	// Conjunction and = Restrictions.conjunction();
+	// and.add(Restrictions.ge("paymentDetails.proposedDate", minDate));
+	// and.add(Restrictions.lt("paymentDetails.proposedDate", maxDate));
+	//
+	// c.add(and);
+	//
+	// return c.list().size();
+	//
+	// } catch (Exception e) {
+	// System.out.println("Exception " + e.getMessage());
+	// return 0;
+	// }
+	//
+	// }
+
 	// date in yyyy-MM-dd format
-	public int getTotalStudentNoOfStudentRegisteredBetwenDates(
-			String startDate, String endDate) {
-		return 0;
+	public int getTotalStudentNoOfStudentRegisteredBetwenDates(Date startDate,
+			Date endDate) {
+
+		Criteria c = quasarConnectionManager.getSession().createCriteria(
+				Payment.class);
+		c.add(Restrictions.eq("class", "RegistrationPayment"));
+
+		try {
+
+			Date minDate = startDate;
+
+			Date maxDate = endDate;
+			//increasing for next day
+			maxDate = new Date(maxDate.getTime() + TimeUnit.DAYS.toMillis(1));
+
+			System.out.println(minDate);
+			System.out.println(maxDate);
+
+			// System.out.println();
+
+			Conjunction and = Restrictions.conjunction();
+			and.add(Restrictions.ge("paymentDetails.paymentDate", minDate));
+			and.add(Restrictions.lt("paymentDetails.paymentDate", maxDate));
+
+			c.add(and);
+
+			return c.list().size();
+
+		} catch (Exception e) {
+			System.out.println("Exception " + e.getMessage());
+			return 0;
+		}
+
 	}
 
 	public int getTotalStudentNoOfStudentRegisteredBetwenDatesForACourse(

@@ -14,7 +14,7 @@
 <body>
 	<h3>Number of Registration vs Date</h3>
 	<table border="0">
-		<s:form action="analysecourse" theme="simple">
+		<s:form action="analytics" theme="simple">
 			<tr>
 				<td><s:label value="Start Date" /></td>
 				<td><sj:datepicker name="startdate" displayFormat="dd/mm/yy" /></td>
@@ -24,7 +24,7 @@
 			<tr>
 				<td><s:checkbox name="checkall" /></td>
 				<td>All</td>
-				<td><s:select name="allcourse" list="{'J2SE','J2EE','Andriod','.NET','PHP'}" /></td>
+				<td><s:select name="allcourse" list="{'6 months','6 weeks'}" /></td>
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkj2se" /></td>
@@ -46,7 +46,8 @@
 			<tr>
 				<td><s:checkbox name="checkdotnet" /></td>
 				<td><s:label value=">Net" /></td>
-				<td><s:select name="dotnetduration" list="{'6 months','6 weeks'}" /></td>
+				<td><s:select name="dotnetduration"
+						list="{'6 months','6 weeks'}" /></td>
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkphp" /></td>
@@ -64,11 +65,17 @@
 	</table>
 	<h3>Chart with values from a List or a Map</h3>
 	<sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;"
-		xaxisLabel="Label-X" yaxisLabel="Label-Y" xaxisColor="#ff0000"
-		xaxisMax="30" xaxisMin="1" xaxisPosition="top"
-		xaxisTickColor="#00ff00">
-		<sjc:chartData label="List -Points-" list="getNoOfRegistration()"
-			color="#ff0000" points="{ show: true }" lines="{ show: true }"
+		xaxisLabel="Label-X" yaxisLabel="Label-Y" 
+		xaxisPosition="top" xaxisColor="#666" xaxisTickColor="#aaa"  
+		
+		xaxisMode="time"
+    	xaxisTimeformat="%d.%m"
+    xaxisTickSize="[2, 'month']"
+    	
+		
+		  >
+		<sjc:chartData label="List -Points-" list="%{allCourseList}"
+			color="#ff0000" points="{ show: false }" lines="{ show: true }"
 			curvedLines="true" curvedLinesFit="true" clickable="true"
 			hoverable="true" />
 	</sjc:chart>
