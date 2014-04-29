@@ -21,12 +21,12 @@ public class GraphingService {
 		quasarConnectionManager = QuasarConnectionManager.getInstance();
 	}
 
-	int getTotalStudentNoOfStudent() {
+	public int getTotalStudentNoOfStudent() {
 		return 0;
 	}
 
 	// date in yyyy-MM-dd format 2014-04-30
-	int getTotalStudentNoOfStudentRegisteredOnADate(String specifiedate) {
+	public int getTotalStudentNoOfStudentRegisteredOnADate(String specifiedate) {
 		Criteria c = quasarConnectionManager.getSession().createCriteria(
 				Payment.class);
 		try {
@@ -58,12 +58,12 @@ public class GraphingService {
 	}
 
 	// date in yyyy-MM-dd format
-	int getTotalStudentNoOfStudentRegisteredBetwenDates(String startDate,
-			String endDate) {
+	public int getTotalStudentNoOfStudentRegisteredBetwenDates(
+			String startDate, String endDate) {
 		return 0;
 	}
 
-	int getTotalStudentNoOfStudentRegisteredBetwenDatesForACourse(
+	public int getTotalStudentNoOfStudentRegisteredBetwenDatesForACourse(
 			String startDate, String endDate, String courseName) {
 		return 0;
 	}

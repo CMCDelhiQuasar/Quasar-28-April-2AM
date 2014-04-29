@@ -3,6 +3,7 @@
 <%@taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="sj" uri="/struts-jquery-tags"%>
+<%@taglib prefix="sjc" uri="/struts-jquery-chart-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +13,19 @@
 </head>
 <body>
 	Hello
-	<sjg:grid id="gridtable" caption="Customer Examples" dataType="json"
+
+	<h3>Chart with values from a List or a Map</h3>
+	<sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;"
+		xaxisLabel="Label-X" yaxisLabel="Label-Y" xaxisColor="#ff0000"
+		xaxisMax="30" xaxisMin="1" xaxisPosition="top"
+		xaxisTickColor="#00ff00">
+		<sjc:chartData label="List -Points-" list="getNoOfRegistration()"
+			color="#ff0000" points="{ show: true }" lines="{ show: true }"
+			curvedLines="true" curvedLinesFit="true" clickable="true"
+			hoverable="true" />
+	</sjc:chart>
+
+	<!--  <sjg:grid id="gridtable" caption="Customer Examples" dataType="json"
 		href="grid-data-provider" pager="true" gridModel="gridModel"
 		rowList="2,5,10" rowNum="5" rownumbers="true" navigator="true"
 		navigatorEdit="false" navigatorView="true" navigatorDelete="false"
@@ -42,6 +55,6 @@
 
 
 	</sjg:grid>
-
+-->
 </body>
 </html>
