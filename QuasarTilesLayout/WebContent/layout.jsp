@@ -73,16 +73,16 @@ hr {
 </head>
 <body topmargin="0">
 
-	<table id="container" width="1000" cellspacing="0" align="center"
+	<table id="container" width="85%" cellspacing="0" align="center"
 		bgcolor="white">
 		<tr>
 			<td colspan="2" height="70"><tiles:insertAttribute name="header" /></td>
 		</tr>
 
 		<tr>
-			<td width="250" id="sidemenu" valign="top"><tiles:insertAttribute
+			<td width="10%" id="sidemenu" valign="top"><tiles:insertAttribute
 					name="sideMenu" /></td>
-			<td width="600" id="content"><tiles:insertAttribute name="body" /></td>
+			<td width="90%" id="content"><tiles:insertAttribute name="body" /></td>
 		</tr>
 		<tr>
 			<td colspan="2" height="70"><tiles:insertAttribute name="footer" />

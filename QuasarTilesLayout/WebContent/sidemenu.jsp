@@ -15,9 +15,9 @@
 		heightStyle="content" animate="true">
 		<sj:accordionItem title="Student Details">
 			<ul type="none">
-				<li><div style="" align="center"><a href="registration.jsp"> <img
-						src="images/addstudent.png"/>Student Registartion</div>
-				</a></li>
+				<li><div>
+						<a href="registration.jsp"> <img src="images/addstudent.png" /></a>
+					</div></li>
 				<li><img src="images/deletestudent.png"></li>
 				<li><img src="images/starred.png"></li>
 			</ul>

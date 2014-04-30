@@ -27,44 +27,5 @@
 					curvedLines="true" curvedLinesFit="true" clickable="true"
 					hoverable="true" />
 			</sjc:chart>
-
-
-
-
-
 		</td>
-	<tr>
-
-		<sjg:grid id="gridtable" caption="Customer Examples" dataType="json"
-			href="grid-data-provider" pager="true" gridModel="gridModel"
-			rowList="5,10,20" rowNum="15" rownumbers="true" navigator="true"
-			navigatorEdit="false" navigatorView="true" navigatorDelete="false"
-			navigatorAdd="false" navigatorSearch="false" altRows="true">
-			<sjg:gridColumn name="studentId" index="id" title="St.ID"
-				formatter="integer" sortable="false" width="20" />
-			<sjg:gridColumn name="name" index="name" title="Name" sortable="true"
-				width="80" align="center" />
-			<sjg:gridColumn name="contactNumber" title="Contact Number"
-				sortable="false" width="80" />
-			<sjg:gridColumn name="courseName" title="Course Name"
-				sortable="false" width="80" />
-
-			<sjg:gridColumn name="feeDetails.totalFee" title="Total Fee"
-				formatter="currency" sortable="false" width="100" />
-			<sjg:gridColumn name="emailId" title="Email ID" sortable="false"
-				width="80" />
-
-			<sjg:gridColumn name="feeDetails.courseFees" title="Course Fee"
-				formatter="currency" sortable="false" width="50" />
-			<sjg:gridColumn name="feeDetails.discountAvailable"
-				title="Discount Available" formatter="currency" width="20"
-				sortable="false" />
-			<sjg:gridColumn name="feeDetails.serviceTax" title="Service Tax"
-				sortable="false" width="20" />
-			<sjg:gridColumn name="feeDetails.fine" title="Fine"
-				formatter="currency" sortable="false" width="20" />
-
-		</sjg:grid>
-
-	</tr>
 </table>

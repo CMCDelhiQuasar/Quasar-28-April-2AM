@@ -48,6 +48,9 @@ input[type=search]:focus {
 			href=""><img alt="" align="bottom" src="images/setting.png" /></a>&nbsp;&nbsp;&nbsp;<a
 			href="analyticswrapper.jsp"><img alt="" align="bottom"
 				src="images/analytics.png" /></a>
+				
+				<a href="console.jsp"><img alt="" align="bottom"
+				src="images/console.png" /></a>
 		</td>
 		<td align="center" valign="top">
 			<div>

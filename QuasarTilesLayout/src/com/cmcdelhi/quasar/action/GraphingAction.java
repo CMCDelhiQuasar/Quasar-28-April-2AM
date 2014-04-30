@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,35 +22,25 @@ public class GraphingAction extends ActionSupport implements
 
 	Date startdate;
 	Date enddate;
+
 	String checkall;
-	String allcourse;
 	String checkj2se;
-	String j2seduration;
 	String checkj2ee;
-	String j2eeduration;
 	String checkandriod;
-	String andriodduration;
 	String checkdotnet;
-	String dotnetduration;
 	String checkphp;
-	String phpduration;
-
-	int startDay;
-	int endDay;
-
-	String startDateString;
-	String endDateString;
-
-	ArrayList<Integer> ticks = new ArrayList<Integer>();
 
 	HttpServletRequest request;
 
-	ArrayList<Integer> allCourseList = new ArrayList<Integer>();
-	ArrayList<Integer> j2seList = new ArrayList<Integer>();
-	ArrayList<Integer> j2eeList = new ArrayList<Integer>();
-	ArrayList<Integer> androidList = new ArrayList<Integer>();
-	ArrayList<Integer> phpList = new ArrayList<Integer>();
-	ArrayList<Integer> dotnetList = new ArrayList<Integer>();
+	// stuffs for graph labelling
+	private String minTime;
+	private String maxTime;
+	private Map<Date, Integer> dateFromMapAllCourse;
+	private Map<Date, Integer> dateFromMapJava;
+	private Map<Date, Integer> dateFromMapJ2EE;
+	private Map<Date, Integer> dateFromMapPhp;
+	private Map<Date, Integer> dateFromMapAndroid;
+	private Map<Date, Integer> dateFromMapDotNet;
 
 	GraphingService gs;
 
@@ -62,60 +55,70 @@ public class GraphingAction extends ActionSupport implements
 		// System.out.println("Check J2SE : " + checkj2se);
 		// System.out.println("J2SE : " + j2seduration);
 
-		startDateString = startdate.toString();
-		endDateString = enddate.toString();
+		// ///////////////////////////////////////////////////////
 
-		startDay = startdate.getDate();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(startdate);
 
-		endDay = daysBetween(startdate, enddate);
+		dateFromMapAllCourse = new TreeMap<Date, Integer>();
+		dateFromMapJava = new TreeMap<Date, Integer>();
+		dateFromMapJ2EE = new TreeMap<Date, Integer>();
+		dateFromMapAndroid = new TreeMap<Date, Integer>();
+		dateFromMapPhp = new TreeMap<Date, Integer>();
+		dateFromMapDotNet = new TreeMap<Date, Integer>();
 
-		for (int i = startDay; i <= endDay; i++) {
+		minTime = "" + calendar.getTime().getTime();
+		System.out.println("minTime : " + minTime);
 
-			ticks.add(i);
+		// /////////////////////////////////////////////////////////////
 
-		}
+		for (int i = 1; i <= (int) ((enddate.getTime() - startdate.getTime()) / (1000 * 60 * 60 * 24)); i++) {
 
-		if (checkall.equals("true")) {
-			System.out.println("All Courses True ");
-
-			if (allcourse.equals("6 months")) {
-
-				System.out.println(startdate);
-				System.out.println(enddate);
-
-				for (int year = startdate.getYear(); year <= enddate.getYear(); year++) {
-					for (int month = startdate.getMonth(); month <= enddate
-							.getMonth(); month++) {
-						for (int date = startdate.getDate(); date <= enddate
-								.getDate(); date++) {
-
-							int n = gs
-									.getTotalStudentNoOfStudentRegisteredOnADate(new SimpleDateFormat(
-											"yyyy-MM-dd").parse((year + 1900)
-											+ "-" + (month + 1) + "-" + date));
-
-							Date d = new SimpleDateFormat("yyyy-MM-dd")
-									.parse((year + 1900) + "-" + (month + 1)
-											+ "-" + date);
-							System.out.println("BIS :" + d + " : " + n);
-
-							allCourseList.add(n);
-						}
-					}
-				}
-
-			} else {
-				allCourseList.add(0);
-				allCourseList.add(1);
+			// populating data only for ALL Course
+			if (checkall.equals("true")) {
+				dateFromMapAllCourse.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADate(calendar
+								.getTime()));
 			}
 
-		} else {
-			allCourseList.add(0);
-			allCourseList.add(1);
+			// populating data only for Java Course
+			if (checkj2se.equals("true")) {
+				dateFromMapJava.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+								calendar.getTime(), "Java SE"));
+			}
+
+			// populating data only for J2EE Course
+			if (checkj2ee.equals("true")) {
+				dateFromMapJ2EE.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+								calendar.getTime(), "Java EE"));
+			}
+
+			// populating data only for Android Course
+			if (checkandriod.equals("true")) {
+				dateFromMapAndroid.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+								calendar.getTime(), "Android"));
+			}
+			// populating data only for Php Course
+			if (checkphp.equals("true")) {
+				dateFromMapPhp.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+								calendar.getTime(), "Php"));
+			}
+			// populating data only for .Net Course
+			if (checkdotnet.equals("true")) {
+				dateFromMapDotNet.put(calendar.getTime(), gs
+						.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+								calendar.getTime(), ".Net"));
+			}
+
+			calendar.add(Calendar.DATE, +1);
 		}
 
-		System.out
-				.println("Allcourse ArrayList Size : " + allCourseList.size());
+		maxTime = "" + calendar.getTime().getTime();
+		System.out.println("maxTime : " + maxTime);
 
 		return SUCCESS;
 	}
@@ -161,28 +164,12 @@ public class GraphingAction extends ActionSupport implements
 		this.checkall = checkall;
 	}
 
-	public String getAllcourse() {
-		return allcourse;
-	}
-
-	public void setAllcourse(String allcourse) {
-		this.allcourse = allcourse;
-	}
-
 	public String getCheckj2se() {
 		return checkj2se;
 	}
 
 	public void setCheckj2se(String checkj2se) {
 		this.checkj2se = checkj2se;
-	}
-
-	public String getJ2seduration() {
-		return j2seduration;
-	}
-
-	public void setJ2seduration(String j2seduration) {
-		this.j2seduration = j2seduration;
 	}
 
 	public String getCheckj2ee() {
@@ -193,28 +180,12 @@ public class GraphingAction extends ActionSupport implements
 		this.checkj2ee = checkj2ee;
 	}
 
-	public String getJ2eeduration() {
-		return j2eeduration;
-	}
-
-	public void setJ2eeduration(String j2eeduration) {
-		this.j2eeduration = j2eeduration;
-	}
-
 	public String getCheckandriod() {
 		return checkandriod;
 	}
 
 	public void setCheckandriod(String checkandriod) {
 		this.checkandriod = checkandriod;
-	}
-
-	public String getAndriodduration() {
-		return andriodduration;
-	}
-
-	public void setAndriodduration(String andriodduration) {
-		this.andriodduration = andriodduration;
 	}
 
 	public String getCheckdotnet() {
@@ -225,14 +196,6 @@ public class GraphingAction extends ActionSupport implements
 		this.checkdotnet = checkdotnet;
 	}
 
-	public String getDotnetduration() {
-		return dotnetduration;
-	}
-
-	public void setDotnetduration(String dotnetduration) {
-		this.dotnetduration = dotnetduration;
-	}
-
 	public String getCheckphp() {
 		return checkphp;
 	}
@@ -241,110 +204,73 @@ public class GraphingAction extends ActionSupport implements
 		this.checkphp = checkphp;
 	}
 
-	public String getPhpduration() {
-		return phpduration;
-	}
-
-	public void setPhpduration(String phpduration) {
-		this.phpduration = phpduration;
-	}
-
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
 		request = arg0;
 	}
 
-	public ArrayList<Integer> getAllCourseList() {
-		return allCourseList;
+	public String getMinTime() {
+		return minTime;
 	}
 
-	public void setAllCourseList(ArrayList<Integer> allCourseList) {
-		this.allCourseList = allCourseList;
+	public void setMinTime(String minTime) {
+		this.minTime = minTime;
 	}
 
-	public ArrayList<Integer> getJ2seList() {
-		return j2seList;
+	public String getMaxTime() {
+		return maxTime;
 	}
 
-	public void setJ2seList(ArrayList<Integer> j2seList) {
-		this.j2seList = j2seList;
+	public void setMaxTime(String maxTime) {
+		this.maxTime = maxTime;
 	}
 
-	public ArrayList<Integer> getJ2eeList() {
-		return j2eeList;
+	public Map<Date, Integer> getDateFromMapAllCourse() {
+		return dateFromMapAllCourse;
 	}
 
-	public void setJ2eeList(ArrayList<Integer> j2eeList) {
-		this.j2eeList = j2eeList;
+	public void setDateFromMapAllCourse(Map<Date, Integer> dateFromMapAllCourse) {
+		this.dateFromMapAllCourse = dateFromMapAllCourse;
 	}
 
-	public ArrayList<Integer> getAndroidList() {
-		return androidList;
+	public Map<Date, Integer> getDateFromMapJava() {
+		return dateFromMapJava;
 	}
 
-	public void setAndroidList(ArrayList<Integer> androidList) {
-		this.androidList = androidList;
+	public void setDateFromMapJava(Map<Date, Integer> dateFromMapJava) {
+		this.dateFromMapJava = dateFromMapJava;
 	}
 
-	public ArrayList<Integer> getPhpList() {
-		return phpList;
+	public Map<Date, Integer> getDateFromMapJ2EE() {
+		return dateFromMapJ2EE;
 	}
 
-	public void setPhpList(ArrayList<Integer> phpList) {
-		this.phpList = phpList;
+	public void setDateFromMapJ2EE(Map<Date, Integer> dateFromMapJ2EE) {
+		this.dateFromMapJ2EE = dateFromMapJ2EE;
 	}
 
-	public ArrayList<Integer> getDotnetList() {
-		return dotnetList;
+	public Map<Date, Integer> getDateFromMapPhp() {
+		return dateFromMapPhp;
 	}
 
-	public void setDotnetList(ArrayList<Integer> dotnetList) {
-		this.dotnetList = dotnetList;
+	public void setDateFromMapPhp(Map<Date, Integer> dateFromMapPhp) {
+		this.dateFromMapPhp = dateFromMapPhp;
 	}
 
-	public ArrayList<Integer> getTicks() {
-		return ticks;
+	public Map<Date, Integer> getDateFromMapDotNet() {
+		return dateFromMapDotNet;
 	}
 
-	public void setTicks(ArrayList<Integer> ticks) {
-		this.ticks = ticks;
+	public void setDateFromMapDotNet(Map<Date, Integer> dateFromMapDotNet) {
+		this.dateFromMapDotNet = dateFromMapDotNet;
 	}
 
-	// this calculatges the days between two dates
-	public int daysBetween(Date d1, Date d2) {
-		return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	public Map<Date, Integer> getDateFromMapAndroid() {
+		return dateFromMapAndroid;
 	}
 
-	public int getEndDay() {
-		return endDay;
-	}
-
-	public void setEndDay(int endDay) {
-		this.endDay = endDay;
-	}
-
-	public int getStartDay() {
-		return startDay;
-	}
-
-	public void setStartDay(int startDay) {
-		this.startDay = startDay;
-	}
-
-	public String getStartDateString() {
-		return startDateString;
-	}
-
-	public void setStartDateString(String startDateString) {
-		this.startDateString = startDateString;
-	}
-
-	public String getEndDateString() {
-		return endDateString;
-	}
-
-	public void setEndDateString(String endDateString) {
-		this.endDateString = endDateString;
+	public void setDateFromMapAndroid(Map<Date, Integer> dateFromMapAndroid) {
+		this.dateFromMapAndroid = dateFromMapAndroid;
 	}
 
 }

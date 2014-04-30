@@ -32,10 +32,12 @@
 
 </head>
 <body>
-	<h1>
-		<img src="images/student.png" alt="Student" /> Student Registration
-		Details
-	</h1>
+	<div>
+		<h3 align="center">
+			<img src="images/student.png" alt="Student" /> Student Registration
+			Details
+		</h3>
+	</div>
 	<h2>Basic Details</h2>
 	<s:form name="regform" theme="simple" action="registration"
 		method="post">
@@ -123,11 +125,11 @@
 							labelposition="left" name="total" disabled="true" value="0.0" /></td>
 				</tr>
 			</s:div>
-            </table> 
-               <hr />
+		</table>
 		<hr />
-            <h2>Payment Details</h2>  
-			<table>
+		<hr />
+		<h2>Payment Details</h2>
+		<table>
 			<s:div id="radio">
 				<tr>
 					<td><s:label value="Payment Type" labelSeparator=""

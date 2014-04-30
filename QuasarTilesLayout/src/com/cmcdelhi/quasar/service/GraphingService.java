@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 
 import com.cmcdelhi.quasar.paymentDetails.Payment;
@@ -97,7 +98,7 @@ public class GraphingService {
 			Date minDate = startDate;
 
 			Date maxDate = endDate;
-			//increasing for next day
+			// increasing for next day
 			maxDate = new Date(maxDate.getTime() + TimeUnit.DAYS.toMillis(1));
 
 			System.out.println(minDate);
@@ -120,9 +121,36 @@ public class GraphingService {
 
 	}
 
-	public int getTotalStudentNoOfStudentRegisteredBetwenDatesForACourse(
-			String startDate, String endDate, String courseName) {
-		return 0;
+	public int getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+			Date specifiedate, String courseName) {
+		Criteria c = quasarConnectionManager.getSession().createCriteria(
+				Payment.class, "payment");
+		
+		c.createAlias("payment.student", "student");
+		c.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+		
+		c.add(Restrictions.eq("class", "RegistrationPayment"));
+		c.add(Restrictions.eq("student.courseName", courseName));
+		try {
+
+			Date minDate = specifiedate;
+
+			Date maxDate = new Date(minDate.getTime()
+					+ TimeUnit.DAYS.toMillis(1));
+
+			Conjunction and = Restrictions.conjunction();
+			and.add(Restrictions.ge("paymentDetails.paymentDate", minDate));
+			and.add(Restrictions.lt("paymentDetails.paymentDate", maxDate));
+
+			c.add(and);
+
+			return c.list().size();
+
+		} catch (Exception e) {
+			System.out.println("Exception " + e.getMessage());
+			return 0;
+		}
+
 	}
 
 }

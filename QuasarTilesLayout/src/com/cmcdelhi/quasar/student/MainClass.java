@@ -110,13 +110,14 @@ public class MainClass {
 
 		GraphingService gs = new GraphingService();
 		try {
-			int x = gs.getTotalStudentNoOfStudentRegisteredBetwenDates(
-					new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-25"),
-					new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-26"));
+			int x = gs.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+					new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-30"),
+					"Java EE");
 
-//			int x = gs
-//					.getTotalStudentNoOfStudentRegisteredOnADate(new SimpleDateFormat(
-//							"yyyy-MM-dd").parse("2014-04-26"));
+			// int x = gs
+			// .getTotalStudentNoOfStudentRegisteredOnADate(new
+			// SimpleDateFormat(
+			// "yyyy-MM-dd").parse("2014-04-26"));
 			System.out.println(x);
 
 		} catch (ParseException e) {

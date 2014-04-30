@@ -12,7 +12,91 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Number of Registration vs Date</h3>
+	<div align="right">
+		<h3>
+			Number of Registration
+
+			<s:if test="dateFromMapAllCourse.size() != 0 ">
+ 			- All Courses 
+	</s:if>
+
+			<s:if test="dateFromMapJava.size() != 0 ">
+		-  Java SE 
+	</s:if>
+
+
+			<s:if test="dateFromMapJ2EE.size() != 0 ">
+ 			- Java EE 
+	</s:if>
+
+			<s:if test="dateFromMapAndroid.size() != 0 ">
+ 			- Android 
+	</s:if>
+			<s:if test="dateFromMapPhp.size() != 0 ">
+ 			- Php
+	</s:if>
+
+			<s:if test="dateFromMapDotNet.size() != 0 ">
+ 			- .Net
+	</s:if>
+
+		</h3>
+	</div>
+	<sjc:chart id="chartDate" xaxisMode="time" xaxisTimeformat="%d"
+		xaxisMin="%{minTime}" xaxisMax="%{maxTime}" xaxisColor="#1568b4"
+		yaxisColor="#1568b4" xaxisTickSize="[1, 'day']" xaxisTickColor="#EEE"
+		yaxisTickColor="#EEF" yaxisTickSize="1"
+		cssStyle="width: 97%; height: 400px;" xaxisLabel="Dates"
+		yaxisLabel="No. of Regisatrations">
+
+		<s:if test="dateFromMapAllCourse.size() != 0 ">
+			<sjc:chartData id="chartDateAll" label="All Courses"
+				list="dateFromMapAllCourse" color="#1568b4" lines="{ show: true }"
+				curvedLines="true" curvedLinesFit="true" />
+		</s:if>
+
+		<s:if test="dateFromMapJava.size() != 0 ">
+			<sjc:chartData id="chartDateJavaSE" label="Java SE"
+				list="dateFromMapJava" color="#faa31b" lines="{ show: true }"
+				curvedLines="true" curvedLinesFit="true" />
+		</s:if>
+
+
+		<s:if test="dateFromMapJ2EE.size() != 0 ">
+			<sjc:chartData id="chartDateJavaEE" label="Java EE"
+				list="dateFromMapJ2EE" color="#ef4444" lines="{ show: true }"
+				curvedLines="true" curvedLinesFit="true" />
+		</s:if>
+
+
+		<s:if test="dateFromMapAndroid.size() != 0 ">
+			<sjc:chartData id="chartDateAndroid" label="Android"
+				list="dateFromMapAndroid" color="#82c341" lines="{ show: true }"
+				curvedLines="true" curvedLinesFit="true" />
+		</s:if>
+
+
+		<s:if test="dateFromMapPhp.size() != 0 ">
+			<sjc:chartData id="chartDatePhp" label="Php" list="dateFromMapPhp"
+				color="#fff000" lines="{ show: true }" curvedLines="true"
+				curvedLinesFit="true" />
+		</s:if>
+
+
+		<s:if test="dateFromMapDotNet.size() != 0 ">
+			<sjc:chartData id="chartDateDotNet" label=".Net"
+				list="dateFromMapDotNet" color="#d54799" lines="{ show: true }"
+				curvedLines="true" curvedLinesFit="true" />
+		</s:if>
+
+
+
+
+	</sjc:chart>
+
+	<br>
+	<br>
+
 	<table border="0">
 		<s:form action="analytics" theme="simple">
 			<tr>
@@ -24,35 +108,33 @@
 			<tr>
 				<td><s:checkbox name="checkall" /></td>
 				<td>All</td>
-				<td><s:select name="allcourse" list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkj2se" /></td>
 				<td><s:label value="J2SE" /></td>
-				<td><s:select name="j2seduration" list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 
 			<tr>
 				<td><s:checkbox name="checkj2ee" /></td>
 				<td><s:label value="J2EE" /></td>
-				<td><s:select name="j2eeduration" list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkandriod" /></td>
 				<td><s:label value="Anriod" /></td>
-				<td><s:select name="andriodduration"
-						list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkdotnet" /></td>
 				<td><s:label value=">Net" /></td>
-				<td><s:select name="dotnetduration"
-						list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 			<tr>
 				<td><s:checkbox name="checkphp" /></td>
 				<td><s:label value="PHP" /></td>
-				<td><s:select name="phpduration" list="{'6 months','6 weeks'}" /></td>
+
 			</tr>
 			<tr>
 				<td></td>
@@ -63,22 +145,7 @@
 
 		</s:form>
 	</table>
-	<h3>Chart with values from a List or a Map</h3>
-	<sjc:chart id="chartPoints" cssStyle="width: 600px; height: 400px;"
-		xaxisLabel="Label-X" yaxisLabel="Label-Y" 
-		xaxisPosition="top" xaxisColor="#666" xaxisTickColor="#aaa"  
-		
-		xaxisMode="time"
-    	xaxisTimeformat="%d.%m"
-    xaxisTickSize="[2, 'month']"
-    	
-		
-		  >
-		<sjc:chartData label="List -Points-" list="%{allCourseList}"
-			color="#ff0000" points="{ show: false }" lines="{ show: true }"
-			curvedLines="true" curvedLinesFit="true" clickable="true"
-			hoverable="true" />
-	</sjc:chart>
+
 
 	<!--  <sjg:grid id="gridtable" caption="Customer Examples" dataType="json"
 		href="grid-data-provider" pager="true" gridModel="gridModel"
