@@ -15,18 +15,20 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cmcdelhi.quasar.paymentDetails.Payment;
 import com.cmcdelhi.quasar.service.GraphingService;
+import com.cmcdelhi.quasar.service.MailService;
 import com.cmcdelhi.quasar.service.PaymentService;
+import com.cmcdelhi.quasar.service.QuasarMailConfiguration;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 
-		SessionFactory sf = new Configuration().configure()
-				.buildSessionFactory();
-
-		Session s = sf.openSession();
-
-		s.beginTransaction();
+		// SessionFactory sf = new Configuration().configure()
+		// .buildSessionFactory();
+		//
+		// Session s = sf.openSession();
+		//
+		// s.beginTransaction();
 
 		// // Criteria c = s.createCriteria(Student.class);
 		// // c.add(Restrictions.eq("studentId", 9L));
@@ -108,22 +110,39 @@ public class MainClass {
 		// System.out.println("" + p.getPaymentID());
 		// }
 
-		GraphingService gs = new GraphingService();
-		try {
-			int x = gs.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
-					new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-30"),
-					"Java EE");
+		// GraphingService gs = new GraphingService();
+		// try {
+		// int x = gs.getTotalStudentNoOfStudentRegisteredOnADateForACourse(
+		// new SimpleDateFormat("yyyy-MM-dd").parse("2014-04-30"),
+		// "Java EE");
+		//
+		// // int x = gs
+		// // .getTotalStudentNoOfStudentRegisteredOnADate(new
+		// // SimpleDateFormat(
+		// // "yyyy-MM-dd").parse("2014-04-26"));
+		// System.out.println(x);
+		//
+		// } catch (ParseException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
-			// int x = gs
-			// .getTotalStudentNoOfStudentRegisteredOnADate(new
-			// SimpleDateFormat(
-			// "yyyy-MM-dd").parse("2014-04-26"));
-			System.out.println(x);
+		// //////////////////////////Testing Messaging System
+		System.out.println("Started  .. . . .. .");
 
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		QuasarMailConfiguration qmc = new QuasarMailConfiguration();
+		qmc.setHost("smtp.gmail.com");
+		qmc.setPort("587");
+		qmc.setStarttls("true");
+		qmc.setAuth("true");
+
+		qmc.setAdimnusername("hacked.fused@gmail.com");
+		qmc.setAdminpassword("hackingisnotpersonal");
+
+		MailService ms = new MailService();
+		boolean result = ms.sendRegistartionConfirmationMail(qmc,
+				"guffy1267@gmail.com","gufran.khurshid@gmail.com");
+		System.out.println("Result : " + result);
 
 	}
 }
