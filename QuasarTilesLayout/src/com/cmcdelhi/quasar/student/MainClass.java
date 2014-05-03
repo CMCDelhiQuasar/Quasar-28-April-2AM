@@ -127,22 +127,22 @@ public class MainClass {
 		// e.printStackTrace();
 		// }
 
-		// //////////////////////////Testing Messaging System
-		// System.out.println("Started  .. . . .. .");
-		//
-		// QuasarMailConfiguration qmc = new QuasarMailConfiguration();
-		// qmc.setHost("smtp.gmail.com");
-		// qmc.setPort("587");
-		// qmc.setStarttls("true");
-		// qmc.setAuth("true");
-		//
-		// qmc.setAdimnusername("hacked.fused@gmail.com");
-		// qmc.setAdminpassword("hackingisnotpersonal");
-		//
-		// MailService ms = new MailService();
-		// boolean result = ms.sendRegistartionConfirmationMail(qmc,
-		// "guffy1267@gmail.com","gufran.khurshid@gmail.com");
-		// System.out.println("Result : " + result);
+		// ////////////////////////Testing Messaging System
+		System.out.println("Started  .. . . .. .");
+
+		QuasarMailConfiguration qmc = new QuasarMailConfiguration();
+		qmc.setHost("smtp.gmail.com");
+		qmc.setPort("587");
+		qmc.setStarttls("true");
+		qmc.setAuth("true");
+
+		qmc.setAdimnusername("hacked.fused@gmail.com");
+		qmc.setAdminpassword("hackingisnotpersonal");
+
+		MailService ms = new MailService();
+		boolean result = ms.sendRegistartionConfirmationMail(qmc,
+				"guffy1267@gmail.com", "gufran.khurshid@gmail.com");
+		System.out.println("Result : " + result);
 
 	}
 }
