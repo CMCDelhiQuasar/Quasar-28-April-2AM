@@ -17,6 +17,8 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
@@ -36,6 +38,10 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 
 	@Override
 	public String execute() throws Exception {
+
+		// /Base Font
+		Font f = new Font(FontFamily.UNDEFINED, 11, Font.NORMAL, new BaseColor(
+				169, 169, 169));
 
 		// Fetch the Details of the Student
 		StudentService ss = new StudentService();
@@ -76,7 +82,7 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			PdfPCell cell1 = new PdfPCell(imghead);
 			cell1.setBorder(Rectangle.NO_BORDER);
 
-			Paragraph cmctitle = new Paragraph("  CMC Delhi");
+			Paragraph cmctitle = new Paragraph("  CMC Delhi", f);
 			cmctitle.add(new Chunk(
 					"\n  8,Vaishali Enclave,Main Metro Road,\n  Pitam Pura,(Opp. Metro Pillar No. 351), New Delhi-110034,India \n  Service Tax Registration No.: Consult/Engr/383/CMC LTD/97 dated 23/12/97 \n  STCNo : AAACC2030KST003 "));
 			cmctitle.setAlignment(Paragraph.ALIGN_RIGHT);
@@ -96,13 +102,21 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 					242, 242), LineSeparator.ALIGN_CENTER, -2);
 			doc.add(line1);
 
+			// /Default Font for Label
+			Font labelFont = new Font(FontFamily.UNDEFINED, 11, Font.NORMAL,
+					new BaseColor(105, 105, 105));
+
 			// //////////////////Student DEtails Paragrap
-			Paragraph studentDetailTitle = new Paragraph("Student Detail");
+			Paragraph studentDetailTitle = new Paragraph("Student Detail",
+					new Font(FontFamily.UNDEFINED, 15, Font.NORMAL,
+							new BaseColor(105, 105, 105)));
 			doc.add(studentDetailTitle);
+
+			doc.add(line1);
 
 			// StudentDetails
 			// Table//////////////////////////////////////////////////////////
-			float[] columnWidthsStuDetails = { 2f, 2f, 1f };
+			float[] columnWidthsStuDetails = { 2.5f, 2.3f, 1f };
 			PdfPTable stuDetTable = new PdfPTable(3);
 			stuDetTable.setWidths(columnWidthsStuDetails);
 
@@ -111,23 +125,33 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			float[] columnWidthsStuBasicDetails = { 1f, 3f };
 
 			PdfPTable nestedTableStudentBasicDetails = new PdfPTable(2);
+			nestedTableStudentBasicDetails.getDefaultCell().setBorder(0);// setting
+																			// border
+																			// to
+																			// be
+																			// zero
 			nestedTableStudentBasicDetails
 					.setHorizontalAlignment(Element.ALIGN_LEFT);
 			nestedTableStudentBasicDetails.setWidthPercentage(90.00f);
-			nestedTableStudentBasicDetails.addCell(new Paragraph("Name "));
+			nestedTableStudentBasicDetails.addCell(new Paragraph("Name ",
+					labelFont));
 			nestedTableStudentBasicDetails.addCell(new Paragraph(s.getName()));
-			nestedTableStudentBasicDetails.addCell(new Paragraph("ID "));
+			nestedTableStudentBasicDetails.addCell(new Paragraph("ID ",
+					labelFont));
 			nestedTableStudentBasicDetails.addCell(new Paragraph(s
-					.getStudentId()+""));
-			nestedTableStudentBasicDetails.addCell(new Paragraph("Course "));
+					.getStudentId() + ""));
+			nestedTableStudentBasicDetails.addCell(new Paragraph("Course ",
+					labelFont));
 			nestedTableStudentBasicDetails.addCell(new Paragraph(s
 					.getCourseName()));
-			nestedTableStudentBasicDetails.addCell(new Paragraph("Email"));
+			nestedTableStudentBasicDetails.addCell(new Paragraph("Email ",
+					labelFont));
 			nestedTableStudentBasicDetails
 					.addCell(new Paragraph(s.getEmailId()));
-			nestedTableStudentBasicDetails.addCell(new Paragraph("Contact "));
+			nestedTableStudentBasicDetails.addCell(new Paragraph("Contact ",
+					labelFont));
 			nestedTableStudentBasicDetails.addCell(new Paragraph(s
-					.getContactNumber()+""));
+					.getContactNumber() + ""));
 
 			nestedTableStudentBasicDetails
 					.setWidths(columnWidthsStuBasicDetails);
@@ -139,24 +163,33 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 
 			// Nested Table of Student Payment Details
 			PdfPTable nestedTableStudentPaymentDetails = new PdfPTable(2);
+			nestedTableStudentPaymentDetails.getDefaultCell().setBorder(0);// setting
+																			// the
+																			// payment
+																			// config
+																			// table
+																			// border
+																			// to
+																			// be
+																			// zero
 			nestedTableStudentPaymentDetails
 					.setHorizontalAlignment(Element.ALIGN_LEFT);
 			nestedTableStudentPaymentDetails
-					.addCell(new Paragraph("Course Fee"));
+					.addCell(new Paragraph("Course Fee",labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getCourseFees() + ""));
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("Discount"));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("Discount",labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getDiscountAvailable() + ""));
 
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("S.Tax"));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("S.Tax",labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getServiceTax() + ""));
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("Fine(%)"));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("Fine(%)",labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getFine() + ""));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(
-					"Total Fees Rs"));
+					"Total Fees Rs",labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getTotalFee() + ""));
 

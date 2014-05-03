@@ -2,6 +2,7 @@ package com.cmcdelhi.quasar.service;
 
 import java.net.URL;
 
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -29,13 +30,22 @@ public class MailService {
 			// set the html message
 			email.setHtmlMsg("<html><body bgcolor='red'><h1>The apache logo - <img src=\"cid:"
 					+ cid
-					+ "\"><h1>"
+					+ "\"></h1>"
 					+ "<p>Apple Inc. is an American multinational corporation headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software and personal computers"
 					+ "</p>"
 					+ "<p>ABC national corporation headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software and personal computers</p>"
 					+ "<ul><li><a href='/wiki/Canon_Inc.' title='Canon Inc.'>Canon</a></li><li><a href='/wiki/Hewlett-Packard' title='Hewlett-Packard'>HP</a></li></ul>"
 					+ "<img alt='abc' src='//upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Wiktionary-logo-en.svg/23px-Wiktionary-logo-en.svg.png' width='23' height='25' />"
 					+ "</body></html>");
+
+			// /Email Attachment
+			EmailAttachment attachment = new EmailAttachment();
+			attachment.setPath("/home/guffy/Pictures/fggsa.jpg");
+			attachment.setDisposition(EmailAttachment.ATTACHMENT);
+			attachment.setDescription("Picture of JMosque");
+			attachment.setName("Mousque");
+
+			email.attach(attachment);
 
 			// set the alternative message
 			email.setTextMsg("Your email client does not support HTML messages");
