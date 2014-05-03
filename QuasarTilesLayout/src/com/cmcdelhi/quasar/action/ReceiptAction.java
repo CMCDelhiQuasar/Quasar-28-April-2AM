@@ -3,13 +3,16 @@ package com.cmcdelhi.quasar.action;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.cmcdelhi.quasar.paymentDetails.InstallmentPayment;
 import com.cmcdelhi.quasar.paymentDetails.Payment;
+import com.cmcdelhi.quasar.paymentDetails.RegistrationPayment;
 import com.cmcdelhi.quasar.service.StudentService;
 import com.cmcdelhi.quasar.student.Student;
 import com.itextpdf.text.BaseColor;
@@ -60,9 +63,21 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 
 			doc.open();
 
+			// ////////////////adding a faint line
+			// //////////////////////////////////////
+			// under title line seprator
+			LineSeparator line1 = new LineSeparator(1, 100, new BaseColor(242,
+					242, 242), LineSeparator.ALIGN_CENTER, -2);
+
+			doc.add(line1);
+
 			// /Recipt Number Addition
 			// Receipt # INV-768479
-			Paragraph receiptNumber = new Paragraph("Receipt  #  INV-768479");
+			Date d = new Date();
+			Paragraph receiptNumber = new Paragraph("Receipt  #  INV-"
+					+ d.getYear() + "/" + d.getMonth() + "/" + d.getDate()
+					+ "/" + d.getHours() + "/" + d.getMinutes() + "/"
+					+ d.getSeconds());
 			receiptNumber.setAlignment(Paragraph.ALIGN_RIGHT);
 			doc.add(receiptNumber);
 
@@ -95,11 +110,6 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			headerTable.addCell(cell2);
 			doc.add(headerTable);
 
-			// ////////////////adding a faint line
-			// //////////////////////////////////////
-			// under title line seprator
-			LineSeparator line1 = new LineSeparator(1, 100, new BaseColor(242,
-					242, 242), LineSeparator.ALIGN_CENTER, -2);
 			doc.add(line1);
 
 			// /Default Font for Label
@@ -107,12 +117,12 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 					new BaseColor(105, 105, 105));
 
 			// //////////////////Student DEtails Paragrap
-			Paragraph studentDetailTitle = new Paragraph("Student Detail",
+			Paragraph studentDetailTitle = new Paragraph("Student Detail \n",
 					new Font(FontFamily.UNDEFINED, 15, Font.NORMAL,
 							new BaseColor(105, 105, 105)));
 			doc.add(studentDetailTitle);
-
-			doc.add(line1);
+			// adding line to the system
+			doc.add(new Paragraph(" "));
 
 			// StudentDetails
 			// Table//////////////////////////////////////////////////////////
@@ -174,22 +184,25 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 																			// zero
 			nestedTableStudentPaymentDetails
 					.setHorizontalAlignment(Element.ALIGN_LEFT);
-			nestedTableStudentPaymentDetails
-					.addCell(new Paragraph("Course Fee",labelFont));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph(
+					"Course Fee", labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getCourseFees() + ""));
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("Discount",labelFont));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("Discount",
+					labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getDiscountAvailable() + ""));
 
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("S.Tax",labelFont));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("S.Tax",
+					labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getServiceTax() + ""));
-			nestedTableStudentPaymentDetails.addCell(new Paragraph("Fine(%)",labelFont));
+			nestedTableStudentPaymentDetails.addCell(new Paragraph("Fine(%)",
+					labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getFine() + ""));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(
-					"Total Fees Rs",labelFont));
+					"Total Fees Rs", labelFont));
 			nestedTableStudentPaymentDetails.addCell(new Paragraph(s
 					.getFeeDetails().getTotalFee() + ""));
 
@@ -221,8 +234,12 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			doc.add(line2);
 
 			// //////////////////Payment Paragrap
-			Paragraph paymentDetailTitle = new Paragraph("Payment Detail");
+			Paragraph paymentDetailTitle = new Paragraph("Payment Detail",
+					new Font(FontFamily.UNDEFINED, 15, Font.NORMAL,
+							new BaseColor(105, 105, 105)));
 			doc.add(paymentDetailTitle);
+			// adding line to the system
+			doc.add(new Paragraph(" "));
 
 			// under address line seprator
 			// Table//////////////////////////////////////////////////////////
@@ -230,17 +247,37 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			PdfPTable payDetTable = new PdfPTable(5);
 			// stuDetTable.setWidths(columnWidthsStuDetails);
 
+			payDetTable.getDefaultCell().setBorder(0);// setting
+			// border
+			// to
+			// be
+			// zero
+
 			// coloumn for Payment Type
-			PdfPCell cellpayDet1 = new PdfPCell(new Paragraph("Type"));
+			PdfPCell cellpayDet1 = new PdfPCell(new Paragraph("Type", new Font(
+					FontFamily.UNDEFINED, 10, Font.NORMAL, new BaseColor(105,
+							105, 105))));
+			cellpayDet1.setBorderColor(new BaseColor(242, 242, 242));
 			// coloumn for Payment Status
-			PdfPCell cellpayDet2 = new PdfPCell(new Paragraph("Status"));
+			PdfPCell cellpayDet2 = new PdfPCell(new Paragraph("Status",
+					new Font(FontFamily.UNDEFINED, 10, Font.NORMAL,
+							new BaseColor(105, 105, 105))));
+			cellpayDet2.setBorderColor(new BaseColor(242, 242, 242));
 			// coloumn for Payment ID
-			PdfPCell cellpayDet3 = new PdfPCell(new Paragraph("Payment ID"));
+			PdfPCell cellpayDet3 = new PdfPCell(new Paragraph("Payment ID",
+					new Font(FontFamily.UNDEFINED, 10, Font.NORMAL,
+							new BaseColor(105, 105, 105))));
+			cellpayDet3.setBorderColor(new BaseColor(242, 242, 242));
 			// coloumn for Depostin Date
-			PdfPCell cellpayDet4 = new PdfPCell(
-					new Paragraph("Deposition Date"));
+			PdfPCell cellpayDet4 = new PdfPCell(new Paragraph(
+					"Deposition Date", new Font(FontFamily.UNDEFINED, 10,
+							Font.NORMAL, new BaseColor(105, 105, 105))));
+			cellpayDet4.setBorderColor(new BaseColor(242, 242, 242));
 			// coloumn for Amount
-			PdfPCell cellpayDet5 = new PdfPCell(new Paragraph("Amount"));
+			PdfPCell cellpayDet5 = new PdfPCell(new Paragraph("Amount",
+					new Font(FontFamily.UNDEFINED, 10, Font.NORMAL,
+							new BaseColor(105, 105, 105))));
+			cellpayDet5.setBorderColor(new BaseColor(242, 242, 242));
 
 			payDetTable.setWidthPercentage(100.0f);
 			payDetTable.addCell(cellpayDet1);
@@ -249,14 +286,32 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			payDetTable.addCell(cellpayDet4);
 			payDetTable.addCell(cellpayDet5);
 
+			double totalAmount = 0;
+
 			// ///////////////////populating table Data
 			for (Payment p : s.getPaymentsList()) {
 
-				payDetTable.addCell("Type");
+				if (p instanceof RegistrationPayment) {
+					payDetTable.addCell("Redg. Payment");
+				} else if (p instanceof InstallmentPayment) {
+					InstallmentPayment inp = (InstallmentPayment) p;
+					payDetTable.addCell(inp.getInstallmentType()
+							+ " Inst. Payment ");
+				}
+
 				payDetTable.addCell(p.getPaymentStatus() + "");
 				payDetTable.addCell(p.getPaymentID() + "");
-				payDetTable
-						.addCell(p.getPaymentDetails().getPaymentDate() + "");
+
+				if (p.getPaymentDetails().getPaymentDate() == null) {
+					payDetTable.addCell("---");
+				} else {
+					payDetTable.addCell(""
+							+ p.getPaymentDetails().getPaymentDate());
+				}
+
+				totalAmount = totalAmount
+						+ p.getPaymentDetails().getDepositedAmount();
+
 				payDetTable.addCell(p.getPaymentDetails().getDepositedAmount()
 						+ "");
 
@@ -266,15 +321,31 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 
 			// /////////////////////////////////////////////////////////
 			// grand total bar
-			LineSeparator line6 = new LineSeparator(1, 100, new BaseColor(255,
-					122, 78), LineSeparator.ALIGN_CENTER, -2);
+			LineSeparator line6 = new LineSeparator(1, 100, new BaseColor(105,
+					105, 105), LineSeparator.ALIGN_CENTER, -2);
 
 			// /craeeting grand total
-			Paragraph grandTotal = new Paragraph("Grand Total : Rs 14576");
+			Paragraph grandTotal = new Paragraph(" Grand Total  Rs. "
+					+ totalAmount, new Font(FontFamily.UNDEFINED, 15,
+					Font.NORMAL, new BaseColor(105, 105, 105)));
 			grandTotal.setAlignment(Paragraph.ALIGN_RIGHT);
 
+			// /craeeting grand total line
+			Paragraph grandTotalLine = new Paragraph("Till " + new Date()
+					+ " Total Amount Deposited  : Rs." + totalAmount);
+			grandTotal.setAlignment(Paragraph.ALIGN_LEFT);
+
+			// adding line to the system
+			doc.add(new Paragraph(" "));
 			doc.add(line6);
 			doc.add(grandTotal);
+			doc.add(grandTotalLine);
+
+			doc.add(new Paragraph(" "));
+			doc.add(new Paragraph(" "));
+			doc.add(new Paragraph(" "));
+			doc.add(new Paragraph(" "));
+			doc.add(new Paragraph(" "));
 
 			// cell1.setBorder(Rectangle.NO_BORDER);
 
@@ -290,17 +361,6 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			// BaseColor(218,
 			// 218, 218), LineSeparator.ALIGN_CENTER, -2);
 
-			// under student/fee details line seprator
-			LineSeparator line3 = new LineSeparator(1, 100, new BaseColor(0,
-					78, 012), LineSeparator.ALIGN_CENTER, -2);
-
-			// payment details bar top line
-			LineSeparator line4 = new LineSeparator(1, 100, new BaseColor(255,
-					0, 0), LineSeparator.ALIGN_CENTER, -2);
-			// payment details bottom top line
-			LineSeparator line5 = new LineSeparator(1, 100, new BaseColor(5,
-					140, 55), LineSeparator.ALIGN_CENTER, -2);
-
 			// terms and conditions bar
 			LineSeparator line7 = new LineSeparator(1, 100, new BaseColor(242,
 					242, 242), LineSeparator.ALIGN_CENTER, -2);
@@ -308,7 +368,9 @@ public class ReceiptAction extends ActionSupport implements ServletRequestAware 
 			// footer terms and conditions
 
 			Paragraph termscondition = new Paragraph(
-					"Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.");
+					"Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.Information collected through this site is kept Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.Information collected through this site is kept confidential and is not passed to third party organizations for marketing or promotional purposes.",
+					new Font(FontFamily.UNDEFINED, 8, Font.NORMAL,
+							new BaseColor(169, 169, 169)));
 
 			doc.add(termscondition);
 
