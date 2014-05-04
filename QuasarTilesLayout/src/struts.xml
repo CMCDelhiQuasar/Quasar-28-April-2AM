@@ -110,6 +110,11 @@
 			<result name="failure">/failure.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
+		
+		<action name="globalsearch" class="com.cmcdelhi.quasar.action.GlobalSearchAction">
+			<result name="success">/searchresultwrapper.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
 
 		
 

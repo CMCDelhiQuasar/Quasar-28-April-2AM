@@ -28,7 +28,7 @@
 				<li><a href="registration.jsp"><img src="images/002.png"></img></a></li>
 				<li>student two</li>
 				<li>student three</li>
-				<li><a href="pendingpayment">more</a></li>
+				<li><a href="pendingpayment"><img src="images/calendar.png"/></a></li>
 			</ol>
 		</sj:accordionItem>
 
