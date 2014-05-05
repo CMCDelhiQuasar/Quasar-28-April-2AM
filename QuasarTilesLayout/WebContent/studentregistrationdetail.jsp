@@ -40,15 +40,6 @@
 </head>
 <body>
 
-	<div class="gvgraph">
-		<gvgraph class="left"
-			data-src="/wp-content/themes/google_ventures/graphs/left-1.json"></gvgraph>
-		<gvgraph class="right"
-			data-src="/wp-content/themes/google_ventures/graphs/right-1.json"></gvgraph>
-		<gvgraph class="top"
-			data-src="/wp-content/themes/google_ventures/graphs/top-1.json"></gvgraph>
-	</div>
-
 
 
 	<div>

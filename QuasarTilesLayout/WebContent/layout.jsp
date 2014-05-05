@@ -17,8 +17,6 @@ body {
 	line-height: 1.4;
 }
 
-
-
 html {
 	color: #333;
 }
@@ -45,9 +43,9 @@ radial-gradient(#1568b4 1%, transparent 20%);
 background-size:10px 10px;
 background-position: 0 0, 30px 30px;
 	*/
-	background-color: #fff;
-	background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px,
-		transparent 81px), linear-gradient(#eee .1em, transparent .1em);
+	background-color: #FFFFF5; background-image : linear-gradient( 90deg,
+	transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+	linear-gradient( #eee .1em, transparent .1em);
 	background-size: 50% 1.2em;
 	border: 1px solid #DDD;
 	padding: 20px;
@@ -63,6 +61,8 @@ background-position: 0 0, 30px 30px;
 	border: 1px solid #DDD;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 	border: 1px solid #DDD;
+	background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px,
+		transparent 81px), linear-gradient(#eee .1em, transparent .1em);
 }
 
 #content {

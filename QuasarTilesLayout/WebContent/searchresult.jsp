@@ -12,13 +12,9 @@
 <style type="text/css">
 #box {
 	/*background-color: #F7F7F9; */
-	
-	background-color: #fff;
+	background-color: #FFFFE0;
 	background-image: linear-gradient(#eee .1em, transparent .1em);
 	background-size: 85% 1.2em;
-	
-	
-	
 	padding: 20px;
 	margin: 20px 0px;
 	-webkit-border-radius: 4px;
