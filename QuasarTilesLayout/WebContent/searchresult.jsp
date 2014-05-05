@@ -11,7 +11,14 @@
 
 <style type="text/css">
 #box {
-	background-color: #F7F7F9;
+	/*background-color: #F7F7F9; */
+	
+	background-color: #fff;
+	background-image: linear-gradient(#eee .1em, transparent .1em);
+	background-size: 85% 1.2em;
+	
+	
+	
 	padding: 20px;
 	margin: 20px 0px;
 	-webkit-border-radius: 4px;
@@ -79,10 +86,9 @@
 	</s:if>
 
 	<s:if
-		test=" queryResultPaymentList.size()!=0 && queryResultStudentList.size()!=0 ">
-	</s:if>
-	<s:else>
+		test=" queryResultPaymentList.size()==0 && queryResultStudentList.size()==0 ">
 		<h1>No Records Found !</h1>
-	</s:else>
+	</s:if>
+
 </body>
 </html>

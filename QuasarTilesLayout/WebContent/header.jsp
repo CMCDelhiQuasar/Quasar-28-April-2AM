@@ -50,6 +50,7 @@ input[type=search]:focus {
 				src="images/analytics.png" /></a> <a href="console.jsp"><img alt=""
 				align="bottom" src="images/console.png" /></a>
 		</td>
+		<td>U+1F464</td>
 		<td align="center" valign="top">
 			<div>
 				<s:form action="globalsearch" theme="simple">

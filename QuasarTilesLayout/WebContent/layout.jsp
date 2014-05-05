@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=iso-8859-1"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,32 +9,46 @@
 html {
 	font-size: 15px;
 }
+
 body {
-	color: #333;
-	font-family: arial, helvetica, sans-serif;
-	color: #333;
-	font-size: 13px;
+	font-family: 'open-sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 1.4;
 }
-body {
-	font-family: Arial, sans-serif;
-	font-size: 13px;
-}
+
+
+
 html {
 	color: #333;
 }
+
 html {
 	font-size: 13px;
 }
+
 body {
 	background-color: #1568b4;
 }
+
 hr {
 	background-color: #EEE;
 	border: 0;
 	height: 1px;
 }
+
 #container {
-	background-image: url("images/dots.png");
+	/*background-image: url("images/dots.png"); */
+	/*background-color:white;
+background-image: radial-gradient(#1568b4 1%, transparent 20%),
+radial-gradient(#1568b4 1%, transparent 20%);
+background-size:10px 10px;
+background-position: 0 0, 30px 30px;
+	*/
+	background-color: #fff;
+	background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px,
+		transparent 81px), linear-gradient(#eee .1em, transparent .1em);
+	background-size: 50% 1.2em;
 	border: 1px solid #DDD;
 	padding: 20px;
 	margin-top: 20px;
@@ -47,6 +62,7 @@ hr {
 	-webkit-box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.8);
 	border: 1px solid #DDD;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+	border: 1px solid #DDD;
 }
 
 #content {
@@ -68,7 +84,7 @@ hr {
 	
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Insert title here</title>
 </head>
 <body topmargin="0">

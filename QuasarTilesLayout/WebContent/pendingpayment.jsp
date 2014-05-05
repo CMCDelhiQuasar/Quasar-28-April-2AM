@@ -8,7 +8,14 @@
 
 <style type="text/css">
 #pendingpaymentcontactbox {
-	background-color: #F7F7F9;
+	/*	background-color: #F7F7F9;  */
+	background-color: #fff;
+	background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px,
+		transparent 81px), linear-gradient(#eee .1em, transparent .1em);
+	background-size: 85% 1.2em;
+	
+	
+	
 	padding: 20px;
 	margin: 20px 0px;
 	-webkit-border-radius: 4px;
@@ -20,7 +27,6 @@
 	overflow: hidden;
 	margin: 4px;
 	border: 1.5px solid #ccc;
-	
 }
 </style>
 <head>

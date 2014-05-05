@@ -13,8 +13,8 @@
 
 	<sj:accordion id="student" collapsible="false" openOnMouseover="false"
 		heightStyle="content" animate="true">
-		<sj:accordionItem title="Student Details">
-			<ul type="none">
+		<sj:accordionItem title="Student">
+			<ul type="none" align="left">
 				<li><div>
 						<a href="registration.jsp"> <img src="images/addstudent.png" /></a>
 					</div></li>
@@ -23,16 +23,15 @@
 			</ul>
 		</sj:accordionItem>
 
-		<sj:accordionItem title="Pending Payment">
+		<sj:accordionItem title="Payment">
 			<ol>
 				<li><a href="registration.jsp"><img src="images/002.png"></img></a></li>
-				<li>student two</li>
-				<li>student three</li>
+				
 				<li><a href="pendingpayment"><img src="images/calendar.png"/></a></li>
 			</ol>
 		</sj:accordionItem>
 
-		<sj:accordionItem title="Add History">
+		<sj:accordionItem title="History">
 			<ol>
 				<li>abc gf</li>
 				<li>def</li>
