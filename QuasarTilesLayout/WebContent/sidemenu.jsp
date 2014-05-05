@@ -18,7 +18,7 @@
 				<li><div>
 						<a href="registration.jsp"> <img src="images/addstudent.png" /></a>
 					</div></li>
-				<li><img src="images/deletestudent.png"></li>
+				<li><a href="deletestudentwrapper.jsp"><img src="images/deletestudent.png"></a></li>
 				<li><img src="images/starred.png"></li>
 			</ul>
 		</sj:accordionItem>

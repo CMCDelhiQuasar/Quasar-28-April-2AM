@@ -58,17 +58,17 @@ table {
 			</td>
 		</tr>
 		<tr>
-			<td><h4>Name:-</h4></td>
+			<td>Name:-</td>
 			<td><s:property value="#session.shagird.name" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Email:-</h4></td>
+			<td>Email:-</td>
 			<td><s:property value="#session.shagird.emailId" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Contact:-</h4></td>
+			<td>Contact:-</td>
 			<td><s:property value="#session.shagird.contactNumber" /></td>
 		</tr>
 	</table>
@@ -79,34 +79,34 @@ table {
 			</td>
 		</tr>
 		<tr>
-			<td><h4>Course Fee:-</h4></td>
+			<td>Course Fee:-</td>
 			<td><s:property value="#session.shagird.feeDetails.courseFees" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Service Tax:-</h4></td>
+			<td>Service Tax:-</td>
 			<td><s:property value="#session.shagird.feeDetails.serviceTax" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Total Fee:-</h4></td>
+			<td>Total Fee:-</td>
 			<td><s:property value="#session.shagird.feeDetails.totalFee" /></td>
 		</tr>
 
 		<s:iterator var="p" value="#session.shagird.paymentsList">
 
 			<tr>
-				<td><h4>Proposed Amount :-</h4></td>
+				<td>Proposed Amount :-</td>
 				<td><s:property value="#p.paymentDetails.proposedAmount" /></td>
 			</tr>
 
 			<tr>
-				<td><h4>Proposed Date :-</h4></td>
+				<td>Proposed Date :-</td>
 				<td><s:property value="#p.paymentDetails.proposedDate" /></td>
 			</tr>
 
 			<tr>
-				<td><h4>Payment Comment :-</h4></td>
+				<td>Payment Comment :-</td>
 				<td><s:property value="#p.paymentComment" /></td>
 			</tr>
 		</s:iterator>
@@ -118,30 +118,30 @@ table {
 			</td>
 		</tr>
 		<tr>
-			<td><h4>Registration Proposed Amount:-</h4></td>
+			<td>Registration Proposed Amount:-</td>
 			<td><s:property
 					value="#session.shagird.paymentsList.get(0).paymentDetails.proposedAmount" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Registration Deposited Amount:-</h4></td>
+			<td>Registration Deposited Amount:-</td>
 			<td><s:property
 					value="#session.shagird.paymentsList.get(0).paymentDetails.depositedAmount" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Registration Proposed Date :</h4></td>
+			<td>Registration Proposed Date :</td>
 			<td><s:property
 					value="#session.shagird.paymentsList.get(0).paymentDetails.proposedDate" /></td>
 		</tr>
 
 		<tr>
-			<td><h4>Registration Payment Date :</h4></td>
+			<td>Registration Payment Date :</td>
 			<td><s:property
 					value="#session.shagird.paymentsList.get(0).paymentDetails.paymentDate" /></td>
 		</tr>
 		<tr>
-			<td><h4>Registration Payment Comment :</h4></td>
+			<td>Registration Payment Comment :</td>
 			<td><s:property
 					value="#session.shagird.paymentsList.get(0).paymentComment" /></td>
 		</tr>
