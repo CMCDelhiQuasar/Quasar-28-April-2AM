@@ -18,96 +18,127 @@ td {
 <body>
 
 	<h2>Welcome to student info page...</h2>
-	<table  border="0">
-		<tr>
-			<td><h2>Basic Details</h2></td>
-		</tr>
+	<s:iterator var="x" value="studentinfo">
 
-		<tr>
-			<td>Name:-</td>
-			<td></td>
-		</tr>
+		<table border="0" width="">
+			<tr>
+				<td colspan="2">
+					<h2>Basic Details Of Student</h2>
+				</td>
+			</tr>
+			<tr>
+				<td>Name:-</td>
+				<td><s:property value="#x.name" /></td>
+			</tr>
 
-		<tr>
-			<td>Email:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Email:-</td>
+				<td><s:property value="#x.emailId" /></td>
+				<s:set var="email" value="#x.emailId" />
+			</tr>
 
-		<tr>
-			<td>Course Name:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Contact:-</td>
+				<td><s:property value="#x.contactNumber" /></td>
+			</tr>
+		</table>
 
-		<tr>
-			<td>Contact Number:-</td>
-			<td></td>
-		</tr>
+		<table>
+			<tr>
+				<td colspan="2">
+					<h2>Fee Details Of Student</h2>
+				</td>
+			</tr>
+			<tr>
+				<td>Course Fee:-</td>
+				<td><s:property value="#x.feeDetails.courseFees" /></td>
+			</tr>
 
-		<tr>
-			<td>Course Fee:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Service Tax:-</td>
+				<td><s:property value="#x.feeDetails.serviceTax" /></td>
+			</tr>
 
-		<tr>
-			<td>Service Tax:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Fine:-</td>
+				<td><s:property value="#x.feeDetails.fine" /></td>
+			</tr>
 
-		<tr>
-			<td>Discount:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Discount Available:-</td>
+				<td><s:property value="#x.feeDetails.discountAvailable" /></td>
+			</tr>
 
-		<tr>
-			<td>Fine:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>Total Fee:-</td>
+				<td><s:property value="#x.feeDetails.totalFee" /></td>
+			</tr>
 
-		<tr>
-			<td>Total:-</td>
-			<td></td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td><h2>Registration Payment Details</h2></td>
-		</tr>
-		<tr>
-			<td>Proposed Amount:-</td>
-			<td></td>
-		</tr>
+		</table>
+
+		<table>
+			<tr>
+				<td colspan="2">
+					<h2>Registration Details Of Student</h2>
+				</td>
+			</tr>
+			<tr>
+				<td>Registration Proposed Amount:-</td>
+				<td><s:property
+						value="#x.paymentsList.get(0).paymentDetails.proposedAmount" /></td>
+			</tr>
+
+			<tr>
+				<td>Registration Deposited Amount:-</td>
+				<td><s:property
+						value="#x.paymentsList.get(0).paymentDetails.depositedAmount" /></td>
+			</tr>
+
+			<tr>
+				<td>Registration Proposed Date :</td>
+				<td><s:property
+						value="#x.paymentsList.get(0).paymentDetails.proposedDate" /></td>
+			</tr>
+
+			<tr>
+				<td>Registration Payment Date :</td>
+				<td><s:property
+						value="#x.paymentsList.get(0).paymentDetails.paymentDate" /></td>
+			</tr>
+			<tr>
+				<td>Registration Payment Comment :</td>
+				<td><s:property value="#x.paymentsList.get(0).paymentComment" /></td>
+			</tr>
 
 
-		<tr>
-			<td>Deposited Amount:-</td>
-			<td></td>
-		</tr>
 
-		<tr>
-			<td>Payment Date:-</td>
-			<td></td>
-		</tr>
+		</table>
 
-		<tr>
-			<td>Deposition Date:-</td>
-			<td></td>
-		</tr>
+		<table>
+			<tr>
+				<td colspan="2"><h2>Installments Details</h2></td>
+			</tr>
 
-		<tr>
-			<td>Comments:-</td>
-			<td></td>
-		</tr>
+			<tr>
+				<td>First Installment :</td>
+				<td><s:property value="#x.paymentsList.get(0).installmentType" /></td>
+			</tr>
 
-		<tr>
-			<td>Mode Of Payment:-</td>
-			<td></td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td><h2>Installments Details</h2></td>
-		</tr>
-	</table>
+			<tr>
+				<td>Payment Status :</td>
+				<td><s:property value="#x.paymentsList.get(0).paymentStatus" /></td>
+			</tr>
 
+		</table>
+
+		<table>
+
+			<tr>
+				<td><s:submit value="Back" /></td>
+			</tr>
+
+		</table>
+
+	</s:iterator>
 </body>
 </html>
