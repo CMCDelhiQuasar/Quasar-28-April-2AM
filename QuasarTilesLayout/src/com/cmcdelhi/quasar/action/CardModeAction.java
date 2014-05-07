@@ -29,6 +29,9 @@ public class CardModeAction extends ActionSupport implements
 	private Date cardExpiryDate;
 
 	HttpServletRequest request;
+	
+	
+	//Simple 
 
 	// this is the same session maintained throughout the student registration.
 	Map registrationSessionMap;
