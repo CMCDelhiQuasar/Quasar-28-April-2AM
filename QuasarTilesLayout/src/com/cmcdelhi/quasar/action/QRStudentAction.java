@@ -10,45 +10,48 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.cmcdelhi.quasar.paymentDetails.InstallmentPayment;
-import com.cmcdelhi.quasar.paymentDetails.PaymentDetails;
-import com.cmcdelhi.quasar.student.*;
+import com.cmcdelhi.quasar.student.Student;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class StudentInfoAction extends ActionSupport {
+public class QRStudentAction extends ActionSupport {
 
-	String emailid;
+	String emailId;
 	String user;
 	List<Student> studentinfo = new ArrayList<Student>();
 
-	public String execute() {
-		System.out.println("come to execute method");
+	@Override
+	public String execute() throws Exception {
+		System.out.println("Email ID : " + emailId);
 		try {
 			SessionFactory sf = new Configuration().configure()
 					.buildSessionFactory();
 			Session s = sf.openSession();
 			s.beginTransaction();
 			Query query = s.createQuery("from Student where emailId=:user");
-			query.setParameter("user", getEmailid());
+			query.setParameter("user", getEmailId());
 			List<Student> list = query.list();
-            
+
 			for (Iterator it = list.iterator(); it.hasNext();) {
 				Student student = (Student) it.next();
 				studentinfo.add(student);
-				System.out.println("student "+ (InstallmentPayment) student.getPaymentsList().get(1));
+				System.out
+						.println("student "
+								+ (InstallmentPayment) student
+										.getPaymentsList().get(1));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "success";
+		return SUCCESS;
 	}
 
-	public String getEmailid() {
-		return emailid;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public List<Student> getStudentinfo() {

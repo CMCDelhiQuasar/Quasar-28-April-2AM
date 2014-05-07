@@ -56,14 +56,16 @@
 				<tr>
 					<td><s:label value="Name of the Student" labelSeparator=""
 							labelposition="left" /></td>
-					<td><s:textfield label="Name of the Student" labelSeparator=""
-							labelposition="left" name="studentname" /></td>
+					<td><s:textfield label="Name of the Student"
+							labelSeparator="" labelposition="left" name="studentname" /></td>
+					<td><s:fielderror fieldName="studentname" /></td>
 				</tr>
 				<tr>
 					<td><s:label value="Email Id" labelSeparator=""
 							labelposition="left" /></td>
 					<td><s:textfield label="Email Id" labelSeparator=""
 							labelposition="left" name="studentemail" /></td>
+					<td><s:fielderror fieldName="studentemail" /></td>
 				</tr>
 				<tr>
 					<td><s:label value="Course" labelSeparator=""
@@ -81,12 +83,14 @@
 							<s:optgroup label="Edge"
 								list="#{'.Net':'.Net','Core Java':'Core Java'}" />
 						</s:select></td>
+					<td><s:fielderror fieldName="coursename" /></td>
 				</tr>
 				<tr>
 					<td><s:label value="Contact Number" labelSeparator=""
 							labelposition="left" /></td>
 					<td><s:textfield label="Contact Number" labelSeparator=""
 							labelposition="left" name="contact" /></td>
+					<td><s:fielderror fieldName="contact" /></td>
 				</tr>
 			</s:div>
 		</table>
@@ -147,6 +151,7 @@
 					<td><s:radio list="{'Full Fees','Installment'}"
 							onclick="display()" name="paymenttype" label="Payment Type"
 							labelSeparator="" labelposition="left" /></td>
+					<td><s:fielderror fieldName="paymenttype" /></td>
 				</tr>
 			</s:div>
 			<s:div>
@@ -159,6 +164,7 @@
 							<s:optgroup
 								list="#{'2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10'}" />
 						</s:select></td>
+					<td><s:fielderror fieldName="totalinstallments" /></td>
 				</tr>
 
 				<tr>
@@ -167,6 +173,7 @@
 					<td><s:textfield name="registrationamount"
 							label="Registration Amount" labelSeparator=""
 							labelposition="left" /></td>
+					<td><s:fielderror fieldName="registrationamount" /></td>
 				</tr>
 			</s:div>
 		</table>

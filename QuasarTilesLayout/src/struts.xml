@@ -93,9 +93,16 @@
 		</action>
 
 		<action name="searchstudent" class="com.cmcdelhi.quasar.action.StudentInfoAction">
-			<result name="success">/studentinfo.jsp</result>
+			<result name="success">/studentinfowrapper.jsp</result>
 			<result name="input">/registration.jsp</result>
 		</action>
+		
+		
+		<action name="qrAction" class="com.cmcdelhi.quasar.action.QRStudentAction">
+			<result name="success">/qrglobalstudentinfo.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		
 		<action name="getPDF" class="com.cmcdelhi.quasar.action.ReceiptAction">
 			<result name="success" type="stream">
 				<param name="inputName">inputStream</param>

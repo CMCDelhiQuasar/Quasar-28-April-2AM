@@ -1,23 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="sj" uri="/struts-jquery-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<style type="text/css">
-td {
-	height: 10px;
-	font-family: sans-serif;
-	font-style: oblique;
-}
-</style>
 </head>
 <body>
-
-	<h2>Welcome to student info page...</h2>
+	QR GLOBAL Student Info Page
+	<br />
 	<s:iterator var="x" value="studentinfo">
 
 		<table border="0" width="">
@@ -25,8 +17,6 @@ td {
 				<td colspan="2">
 					<h2>Basic Details Of Student</h2>
 				</td>
-				<td width="550" ></td>
-				<td><a href="getPDF"><img src="images/print.jpg" alt="print"></a></td>
 			</tr>
 			<tr>
 				<td>Name:-</td>
