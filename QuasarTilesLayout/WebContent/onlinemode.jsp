@@ -100,17 +100,19 @@
 
 		<h1>Online Transaction Details</h1>
 		<s:form name="onlineform" theme="simple"
-			onsubmit="return validateform()" method="post" action="onlinemode">
+			onsubmit="return true" method="post" action="onlinemode">
 			<table>
 				<tr>
 					<td><s:label value="Transaction Id" /></td>
 					<td><s:textfield labelSeparator="" labelposition="left"
 							name="transactionId" /></td>
+					<td><s:fielderror fieldName="transactionId" /></td>
 				</tr>
 				<tr>
 					<td><s:label value="Reicpt Number" /></td>
 					<td><s:textfield value="0" labelSeparator=""
 							labelposition="left" name="reicptNumber" /></td>
+					<td><s:fielderror fieldName="transactionId" /></td>
 				</tr>
 			</table>
 			<table border="0">

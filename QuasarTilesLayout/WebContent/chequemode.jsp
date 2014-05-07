@@ -100,20 +100,47 @@
 		<br />Registration Payment Comment:- <s:property
 			value="#session.shagird.paymentsList.get(0).paymentComment" />
 		<br />
-		<hr/>
+		<hr />
 
-			<h1>Cheque Details</h1>
-			<s:form name="chequedetails" action="cheque" method="post"
-				onsubmit="return validatecheque()">
-				<s:textfield label="Cheque Number" labelSeparator=""
-					labelposition="left" name="chequeNumber" />
-				<s:textfield label="Drawn on/Bank Name" labelSeparator=""
-					labelposition="left" name="bankName" />
-				<sj:datepicker changeMonth="true" changeYear="true" name="issueDate"
-					label="Issue Date" labelSeparator="" labelposition="left" />
-				<s:submit type="image" value="Proceed" src="images/forward.png"
-					align="right" />
-			</s:form>
+		<h1>Cheque Details</h1>
+		<s:form name="chequedetails" theme="simple" action="cheque"
+			method="post" onsubmit="return true">
+
+			<table>
+				<tr>
+					<td><s:label value="Cheque Number" /></td>
+					<td><s:textfield label="Cheque Number" labelSeparator=""
+							labelposition="left" name="chequeNumber" /></td>
+					<td><s:fielderror fieldName="chequeNumber" /></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Drawn on/Bank Name" /></td>
+					<td><s:textfield label="Drawn on/Bank Name" labelSeparator=""
+							labelposition="left" name="bankName" /></td>
+					<td><s:fielderror fieldName="bankName" /></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Issue Date" /></td>
+					<td><sj:datepicker changeMonth="true" changeYear="true"
+							name="issueDate" label="Issue Date" labelSeparator=""
+							labelposition="left" /></td>
+					<td><s:fielderror fieldName="issueDate" /></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td width="200"></td>
+					<td><s:submit type="image" value="Back" src="images/back.png"
+							align="left" /></td>
+					<td width="60"></td>
+
+					<td><s:submit type="image" value="Proceed"
+							src="images/forward.png" align="right" /></td>
+				</tr>
+			</table>
+		</s:form>
 	</s:else>
 
 </body>
