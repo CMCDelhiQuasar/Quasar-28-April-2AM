@@ -35,12 +35,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Student Registration Page...</title>
 
-
-
 </head>
 <body>
-
-
 
 	<div>
 		<h3 align="center">

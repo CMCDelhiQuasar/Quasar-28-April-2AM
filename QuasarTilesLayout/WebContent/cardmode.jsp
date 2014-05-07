@@ -120,19 +120,51 @@
 			value="#session.shagird.paymentsList.get(0).paymentComment" />
 		<br />
 		<hr />
-		<s:form name="regmode" action="cardmode" method="post"
-			onsubmit="return validatecard()">
-			<s:radio label="Card Type" labelSeparator="" labelposition="left"
-				name="cardType" list="{'Debit Card','Credit Card'}" />
-			<s:textfield label="Card Number" labelSeparator=""
-				labelposition="left" name="cardNumber" />
-			<s:textfield label="Transaction ID" labelSeparator=""
-				labelposition="left" name="transactionId" />
-			<sj:datepicker label="Expiry Date" changeMonth="true"
-				changeYear="true" labelSeparator="" labelposition="left"
-				name="cardExpiryDate" displayFormat="dd/mm/yy" />
-			<s:submit type="image" value="Proceed" src="images/forward.png"
-				align="right" />
+		<s:form name="regmode" theme="simple" action="cardmode" method="post"
+			onsubmit="return true">
+			<table>
+				<tr>
+					<td><s:label value="Card Type" /></td>
+					<td><s:radio label="Card Type" labelSeparator=""
+							labelposition="left" name="cardType"
+							list="{'Debit Card','Credit Card'}" /></td>
+					<td><s:fielderror fieldName="cardType" /></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Card Number" /></td>
+					<td><s:textfield label="Card Number" labelSeparator=""
+							labelposition="left" name="cardNumber" /></td>
+					<td><s:fielderror fieldName="cardNumber" /></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Transaction ID" /></td>
+					<td><s:textfield label="Transaction ID" labelSeparator=""
+							labelposition="left" name="transactionId" /></td>
+					<td><s:fielderror fieldName="transactionId" /></td>
+				</tr>
+
+				<tr>
+					<td><s:label value="Expiry Date" /></td>
+					<td><sj:datepicker label="Expiry Date" changeMonth="true"
+							changeYear="true" labelSeparator="" labelposition="left"
+							name="cardExpiryDate" displayFormat="dd/mm/yy" /></td>
+					<td><s:fielderror fieldName="cardExpiryDate" /></td>
+				</tr>
+
+
+			</table>
+			<table>
+				<tr>
+					<td width="200"></td>
+					<td><s:submit type="image" value="Back" src="images/back.png"
+							align="left" /></td>
+					<td width="60"></td>
+					<td><s:submit type="image" value="Proceed"
+							src="images/forward.png" align="right" /></td>
+				</tr>
+			</table>
 		</s:form>
 	</s:else>
 

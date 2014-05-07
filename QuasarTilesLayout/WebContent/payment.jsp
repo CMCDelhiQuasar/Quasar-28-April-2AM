@@ -139,32 +139,66 @@
 	</s:else>
 
 	<h1>Payment Page</h1>
-	<s:form name="regpayment" method="post" action="payment"
+	<s:form name="regpayment" theme="simple" method="post" action="payment"
 		onsubmit="return paymentvalidate()">
 		<s:set var="pa"
 			value="#session.shagird.paymentsList.get(0).paymentDetails.proposedAmount" />
 		<br />
+		<table border="0">
+			<tr>
+				<td width="100"><s:label value="Proposed Amount" /></td>
+				<td><s:textfield label="Proposed Amount" labelSeparator=""
+						labelposition="left" name="proposedAmount" value="%{#pa}"
+						disabled="true" /></td>
+				<td><s:fielderror fieldName="proposedAmount" /></td>
+			</tr>
 
-		<s:textfield label="Proposed Amount" labelSeparator=""
-			labelposition="left" name="proposedAmount" value="%{#pa}"
-			disabled="true" />
+			<tr>
+				<td><s:label value="Deposited Amount" /></td>
+				<td><s:textfield label="Deposited Amount" labelSeparator=""
+						labelposition="left" name="depositedAmount" /></td>
+				<td><s:fielderror fieldName="depositedAmount" /></td>
+			</tr>
+			<tr>
+				<td><s:label value="ProposedDate" /></td>
+				<td><sj:datepicker name="proposedDate"
+						displayFormat="dd/mm/yy" changeMonth="true" changeYear="true"
+						label="Proposed Date" labelposition="left" /></td>
+				<td><s:fielderror fieldName="proposedDate" /></td>
+			</tr>
+			<tr>
+				<td><s:label value="PaymentDate" /></td>
+				<td><sj:datepicker name="paymentDate" changeMonth="true"
+						changeYear="true" label="Payment Date" labelposition="left"
+						displayFormat="dd/mm/yy" /></td>
+				<td><s:fielderror fieldName="paymentDate" /></td>
+			</tr>
+			<tr>
+				<td><s:label value="Comments" /></td>
+				<td><s:textarea name="comments" label="Comments"
+						labelSeparator="" labelposition="left" /></td>
+				<td><s:fielderror fieldName="comments" /></td>
+			</tr>
+			<tr>
+				<td><s:label value="Mode of Payment" /></td>
+				<td><s:radio
+						list="#{'cash':'Cash','online':'Online','cheque':'Cheque','dd':'DD','card':'Card'}"
+						name="paymentMode" label="Mode of Payment" labelSeparator=""
+						labelposition="left" /></td>
+				<td><s:fielderror fieldName="paymentMode" /></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td width="200"></td>
+				<td><s:submit type="image" value="Back" src="images/back.png"
+						align="left" /></td>
+				<td width="60"></td>
 
-		<s:textfield label="Deposited Amount" labelSeparator=""
-			labelposition="left" name="depositedAmount" />
-		<sj:datepicker name="proposedDate" displayFormat="dd/mm/yy"
-			changeMonth="true" changeYear="true" label="Proposed Date"
-			labelposition="left" />
-		<sj:datepicker name="paymentDate" changeMonth="true" changeYear="true"
-			label="Payment Date" labelposition="left" displayFormat="dd/mm/yy" />
-		<s:textarea name="comments" label="Comments" labelSeparator=""
-			labelposition="left" />
-		<s:radio
-			list="#{'cash':'Cash','online':'Online','cheque':'Cheque','dd':'DD','card':'Card'}"
-			name="paymentMode" label="Mode of Payment" labelSeparator=""
-			labelposition="left" />
-		<s:submit type="image" value="Proceed" src="images/forward.png"
-			align="right" />
-		<s:submit type="image" value="Back" src="images/back.png" align="left" />
+				<td><s:submit type="image" value="Proceed"
+						src="images/forward.png" align="right" /></td>
+			</tr>
+		</table>
 	</s:form>
 
 </body>
