@@ -96,13 +96,13 @@
 			<result name="success">/studentinfowrapper.jsp</result>
 			<result name="input">/registration.jsp</result>
 		</action>
-		
-		
+
+
 		<action name="qrAction" class="com.cmcdelhi.quasar.action.QRStudentAction">
 			<result name="success">/qrglobalstudentinfo.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
-		
+
 		<action name="getPDF" class="com.cmcdelhi.quasar.action.ReceiptAction">
 			<result name="success" type="stream">
 				<param name="inputName">inputStream</param>
@@ -110,6 +110,10 @@
 				<param name="contentDisposition">filename="mypdf.pdf"</param>
 				<param name="bufferSize">2048</param>
 			</result>
+		</action>
+
+		<action name="xxx" class="com.cmcdelhi.quasar.action.TextResult">
+			<result name="success" type="stream" />
 		</action>
 
 		<action name="analytics" class="com.cmcdelhi.quasar.action.GraphingAction">

@@ -3,9 +3,14 @@ package com.cmcdelhi.quasar.service;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 
+import com.cmcdelhi.quasar.payMode.PaymentMode;
+import com.cmcdelhi.quasar.paymentDetails.Payment;
 import com.cmcdelhi.quasar.paymentDetails.PaymentStatus;
 import com.cmcdelhi.quasar.student.QuasarConnectionManager;
 import com.cmcdelhi.quasar.student.Student;
@@ -63,6 +68,58 @@ public class StudentService {
 		}
 
 		return c.list();
+	}
+
+	public boolean deleteStudent(String emailId) {
+
+		try {
+
+			Session s = quasarConnectionManager.getSession();
+			s.beginTransaction();
+
+			Query q = s.createQuery("from Student where emailId = :emailId");
+			q.setParameter("emailId", emailId);
+			Student st = (Student) q.list().get(0);
+
+			for (Payment p : st.getPaymentsList()) {
+
+				PaymentMode pm = p.getPaymentMode();
+
+				if (pm != null) {
+					// first delete the payment mode entity
+					s.delete(pm);
+				}
+				// secondly delete the payment object
+				s.delete(p);
+			}
+
+			// at last delete the Student Object
+			s.delete(st);
+
+			s.getTransaction().commit();
+			s.close();
+
+			System.out.println("Student Deleted ");
+
+			return true;
+
+		} catch (HibernateException e) {
+			System.out.println("Hibernate Exception : " + e.getMessage());
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println("Null Pointer Exception : " + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public boolean deleteStudent(String... emailIds) {
+
+		return true;
 	}
 
 }

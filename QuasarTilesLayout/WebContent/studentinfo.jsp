@@ -5,15 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<sj:head jqueryui="true" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<style type="text/css">
-td {
-	height: 10px;
-	font-family: sans-serif;
-	font-style: oblique;
-}
-</style>
+
 </head>
 <body>
 
@@ -25,8 +20,9 @@ td {
 				<td colspan="2">
 					<h2>Basic Details Of Student</h2>
 				</td>
-				<td width="550" ></td>
-				<td><a href="getPDF"><img src="images/print.jpg" alt="print"></a></td>
+				<td width="550"></td>
+				<td><a href="getPDF?emailid=<s:property value="#x.emailId" />"><img src="images/print.jpg"
+						alt="print"></a></td>
 			</tr>
 			<tr>
 				<td>Name:-</td>

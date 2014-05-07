@@ -44,13 +44,13 @@ input[type=search]:focus {
 <table width="100%" height="100%">
 	<tr>
 		<td align="left" valign="top">&nbsp;&nbsp; <a href=""><img
-				alt="" align="bottom" src="images/homecolor.png" /></a>&nbsp;&nbsp;&nbsp; <a
-			href=""><img alt="" align="bottom" src="images/setting.png" /></a>&nbsp;&nbsp;&nbsp;<a
+				alt="" align="bottom" src="images/homecolor.png" /></a>&nbsp;&nbsp;&nbsp;
+			<a href=""><img alt="" align="bottom" src="images/setting.png" /></a>&nbsp;&nbsp;&nbsp;<a
 			href="analyticswrapper.jsp"><img alt="" align="bottom"
 				src="images/analytics.png" /></a> <a href="console.jsp"><img alt=""
 				align="bottom" src="images/console.png" /></a>
 		</td>
-		<td>U+1F464</td>
+
 		<td align="center" valign="top">
 			<div>
 				<s:form action="globalsearch" theme="simple">

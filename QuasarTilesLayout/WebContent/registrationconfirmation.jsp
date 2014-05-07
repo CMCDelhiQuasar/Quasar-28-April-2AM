@@ -8,23 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<style type="text/css">
-td {
-	height: 10px;
-	font-family: sans-serif;
-	font-style: oblique;
-	line-height: 20px;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-#name {
-	font-size: large;
-	font-style: oblique;
-}
-</style>
 
 </head>
 <body>

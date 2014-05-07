@@ -1,23 +1,11 @@
 package com.cmcdelhi.quasar.student;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Conjunction;
-import org.hibernate.criterion.Restrictions;
 
+import com.cmcdelhi.quasar.payMode.PaymentMode;
 import com.cmcdelhi.quasar.paymentDetails.Payment;
-import com.cmcdelhi.quasar.service.GraphingService;
-import com.cmcdelhi.quasar.service.MailService;
-import com.cmcdelhi.quasar.service.PaymentService;
-import com.cmcdelhi.quasar.service.QuasarMailConfiguration;
 
 public class MainClass {
 
@@ -128,21 +116,65 @@ public class MainClass {
 		// }
 
 		// ////////////////////////Testing Messaging System
-		System.out.println("Started  .. . . .. .");
+		// System.out.println("Started  .. . . .. .");
+		//
+		// QuasarMailConfiguration qmc = new QuasarMailConfiguration();
+		// qmc.setHost("smtp.gmail.com");
+		// qmc.setPort("587");
+		// qmc.setStarttls("true");
+		// qmc.setAuth("true");
+		//
+		// qmc.setAdimnusername("hacked.fused@gmail.com");
+		// qmc.setAdminpassword("hackingisnotpersonal");
+		//
+		// MailService ms = new MailService();
+		// boolean result = ms.sendRegistartionConfirmationMail(qmc,
+		// "guffy1267@gmail.com", "gufran.khurshid@gmail.com");
+		// System.out.println("Result : " + result);
 
-		QuasarMailConfiguration qmc = new QuasarMailConfiguration();
-		qmc.setHost("smtp.gmail.com");
-		qmc.setPort("587");
-		qmc.setStarttls("true");
-		qmc.setAuth("true");
+		// ///////////////////////////////////////Testing for Deletion Module
 
-		qmc.setAdimnusername("hacked.fused@gmail.com");
-		qmc.setAdminpassword("hackingisnotpersonal");
+		try {
+			QuasarConnectionManager qcm = QuasarConnectionManager.getInstance();
+			Session s = qcm.getSession();
+			s.beginTransaction();
 
-		MailService ms = new MailService();
-		boolean result = ms.sendRegistartionConfirmationMail(qmc,
-				"guffy1267@gmail.com", "gufran.khurshid@gmail.com");
-		System.out.println("Result : " + result);
+			Query q = s.createQuery("from Student where emailId = :emailId");
+			q.setParameter("emailId", "chetu@gmail.om");
+			Student st = (Student) q.list().get(0);
+
+			for (Payment p : st.getPaymentsList()) {
+
+				PaymentMode pm = p.getPaymentMode();
+
+				if (pm != null) {
+					s.delete(pm);
+				}
+
+				s.delete(p);
+			}
+
+			s.delete(st);
+
+			//
+			// Student ent = (Student) s.get(Student.class, 3L);
+			// s.delete(ent);
+
+			s.getTransaction().commit();
+			s.close();
+
+			System.out.println("Student Deleted ");
+
+		} catch (HibernateException e) {
+			System.out.println("Hibernate Exception : " + e.getMessage());
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println("Null Pointer Exception : " + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Exception : " + e.getMessage());
+			e.printStackTrace();
+		}
 
 	}
 }
